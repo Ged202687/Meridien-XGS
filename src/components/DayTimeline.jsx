@@ -75,11 +75,11 @@ export default function DayTimeline({ agentId, nomAgent, date, editable }) {
           const pDebut = heureVersMinutes(pause.heure_debut)
           const pFin = heureVersMinutes(pause.heure_fin)
           const haut = ((pDebut - debut) / duree) * 100
-          const hauteur = Math.max(((pFin - pDebut) / duree) * 100, 2.5)
+          const hauteur = ((pFin - pDebut) / duree) * 100
           return (
             <div
               key={pause.id}
-              className="day-timeline-pause-v"
+              className={`day-timeline-pause-v ${pause.type_pause === 'dejeuner' ? 'dejeuner' : 'pause15'}`}
               style={{ top: `${haut}%`, height: `${hauteur}%` }}
               title={`${LIBELLE_PAUSE[pause.type_pause]} — ${pause.heure_debut.slice(0, 5)} à ${pause.heure_fin.slice(0, 5)}`}
             />
@@ -91,8 +91,8 @@ export default function DayTimeline({ agentId, nomAgent, date, editable }) {
       </div>
 
       <div className="day-timeline-legende-v">
-        <span><i className="pastille poste" /> Poste de travail</span>
-        <span><i className="pastille pause15" /> Pause / déjeuner</span>
+        <span><i className="pastille dejeuner" /> Déjeuner</span>
+        <span><i className="pastille pause15" /> Pause 15 min</span>
         {afficherHeureActuelle && <span><i className="pastille maintenant" /> Heure actuelle</span>}
       </div>
 
