@@ -19,7 +19,7 @@ const ONGLETS = [
   { id: 'mois', label: 'Mois' },
 ]
 
-export default function PlanningTabs({ agentId, nomAgent }) {
+export default function PlanningTabs({ agentId, nomAgent, editable }) {
   const [actif, setActif] = useState('jour')
   const [date, setDate] = useState(new Date())
 
@@ -82,7 +82,9 @@ export default function PlanningTabs({ agentId, nomAgent }) {
       </div>
 
       <div className="planning-tabs-contenu">
-        {actif === 'jour' && <DayTimeline agentId={agentId} date={date} />}
+        {actif === 'jour' && (
+          <DayTimeline agentId={agentId} nomAgent={nomAgent} date={date} editable={editable} />
+        )}
         {actif === 'semaine' && (
           <WeekView agentId={agentId} lundi={lundi} onChoisirJour={allerAuJour} />
         )}

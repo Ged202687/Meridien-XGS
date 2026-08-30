@@ -74,7 +74,7 @@ export default function GlobalPlanning() {
       </div>
 
       {agentSelectionne ? (
-        <PlanningTabs agentId={agentSelectionne.id} nomAgent={agentSelectionne.nom_complet} />
+        <PlanningTabs agentId={agentSelectionne.id} nomAgent={agentSelectionne.nom_complet} editable />
       ) : (
         <>
           <div className="global-planning-nav">

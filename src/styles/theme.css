@@ -1,31 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Inter:wght@400;500;600&display=swap');
+
 :root {
-  --meridien-bg-start: #0b1233;
-  --meridien-bg-end: #1b2559;
+  --meridien-bg-start: #0b1230;
+  --meridien-bg-end: #171e45;
   --meridien-card-bg: rgba(255, 255, 255, 0.06);
   --meridien-card-border: rgba(255, 255, 255, 0.09);
   --meridien-input-bg: #edeffb;
   --meridien-input-text: #1a1a2e;
-  --meridien-accent: #f2c230;
-  --meridien-accent-hover: #e0af1c;
+  --meridien-accent: #efb93d;
+  --meridien-accent-hover: #d9a32a;
   --meridien-text: #ffffff;
-  --meridien-text-muted: #9aa3c7;
+  --meridien-text-muted: #b9bedd;
   --meridien-danger: #ff8a80;
   --meridien-radius: 14px;
   --meridien-font: "Inter", "Segoe UI", system-ui, sans-serif;
+  --meridien-font-display: "Sora", "Inter", system-ui, sans-serif;
 
-  /* Intérieur de l'app (après connexion) : fond clair, accent doré conservé */
-  --meridien-app-bg: #f5f6fb;
+  --meridien-app-bg: #f6f4ef;
   --meridien-surface: #ffffff;
-  --meridien-surface-alt: #eef0f8;
-  --meridien-border-light: #e2e4ef;
-  --meridien-text-dark: #1a1a2e;
-  --meridien-text-dark-muted: #6b6f8a;
-  --meridien-success-bg: #e6f4ea;
-  --meridien-success-text: #1e7a3d;
-  --meridien-warning-bg: #fdf1da;
-  --meridien-warning-text: #92660c;
-  --meridien-danger-bg: #fbe6e6;
-  --meridien-danger-text: #a32d2d;
+  --meridien-surface-alt: #f0ece0;
+  --meridien-border-light: #e7e2d8;
+  --meridien-text-dark: #0b1230;
+  --meridien-text-dark-muted: #8a8676;
+  --meridien-success-bg: #e1f0ea;
+  --meridien-success-text: #0f6e56;
+  --meridien-warning-bg: #fbf0d9;
+  --meridien-warning-text: #a8790a;
+  --meridien-danger-bg: #f7e3db;
+  --meridien-danger-text: #c1502e;
 }
 
 * {

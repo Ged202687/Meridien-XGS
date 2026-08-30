@@ -16,9 +16,18 @@
 }
 
 .stats-resume-valeur {
+  font-family: var(--meridien-font-display);
   font-size: 22px;
   font-weight: 600;
   color: var(--meridien-text-dark);
+}
+
+.stats-resume-item:nth-child(1) .stats-resume-valeur {
+  color: var(--meridien-success-text);
+}
+
+.stats-resume-item:nth-child(2) .stats-resume-valeur {
+  color: var(--meridien-danger-text);
 }
 
 .stats-resume-label {

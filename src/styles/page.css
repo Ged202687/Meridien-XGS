@@ -10,10 +10,22 @@
 }
 
 .meridien-page-title {
-  margin: 0 0 20px;
-  font-size: 18px;
+  margin: 0 0 8px;
+  font-family: var(--meridien-font-display);
+  font-size: 19px;
   font-weight: 600;
   color: var(--meridien-text-dark);
+}
+
+.meridien-page-title::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: var(--meridien-accent);
+  border-radius: 2px;
+  margin-top: 8px;
+  margin-bottom: 12px;
 }
 
 .meridien-readonly-banner {
@@ -45,10 +57,9 @@
 }
 
 .meridien-switch button.active {
-  background: var(--meridien-surface);
-  color: var(--meridien-text-dark);
-  font-weight: 600;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  background: var(--meridien-bg-start);
+  color: #ffffff;
+  font-weight: 500;
 }
 
 .meridien-placeholder-card {

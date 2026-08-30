@@ -1,37 +1,60 @@
-.day-timeline-bar {
-  position: relative;
-  height: 56px;
-  border-radius: 8px;
-  background: #e6f0fb;
-  overflow: hidden;
-}
-
-.day-timeline-pause {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-}
-
-.day-timeline-pause.pause15 {
-  background: #f2c230;
-}
-
-.day-timeline-pause.dejeuner {
-  background: #f0997b;
-}
-
-.day-timeline-repere {
+.day-timeline-layout {
   display: flex;
+  gap: 18px;
+}
+
+.day-timeline-heures {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   font-size: 11px;
   color: var(--meridien-text-dark-muted);
-  margin-top: 4px;
+  height: 260px;
+  padding: 2px 0;
 }
 
-.day-timeline-legende {
+.day-timeline-bar-vertical {
+  position: relative;
+  width: 56px;
+  height: 260px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--meridien-accent);
+  flex-shrink: 0;
+}
+
+.day-timeline-pause-v {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+}
+
+.day-timeline-maintenant {
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  height: 2px;
+  background: var(--meridien-text-dark);
+}
+
+.day-timeline-maintenant::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--meridien-text-dark);
+}
+
+.day-timeline-legende-v {
   display: flex;
-  gap: 16px;
-  margin-top: 14px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
   font-size: 12.5px;
   color: var(--meridien-text-dark-muted);
 }
@@ -41,20 +64,33 @@
   width: 10px;
   height: 10px;
   border-radius: 3px;
-  margin-right: 5px;
+  margin-right: 6px;
   vertical-align: middle;
 }
 
 .pastille.poste {
-  background: #85b7eb;
+  background: var(--meridien-accent);
 }
 
 .pastille.pause15 {
-  background: #f2c230;
+  background: #ffffff;
+  border: 1px solid var(--meridien-border-light);
 }
 
-.pastille.dejeuner {
-  background: #f0997b;
+.pastille.maintenant {
+  background: #ffffff;
+  border: 2px solid var(--meridien-text-dark);
+}
+
+.day-timeline-modifier {
+  margin-top: 16px;
+  background: transparent;
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  color: var(--meridien-accent-hover);
+  cursor: pointer;
 }
 
 .day-timeline-info,

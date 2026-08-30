@@ -1,9 +1,21 @@
+import { useState } from 'react'
 import { usePlanningJour } from '../lib/usePlanningJour'
-import { heureVersMinutes, LIBELLE_STATUT, LIBELLE_PAUSE } from '../lib/dateUtils'
+import { heureVersMinutes, LIBELLE_STATUT, LIBELLE_PAUSE, formatDateISO } from '../lib/dateUtils'
+import EditPlanningModal from './EditPlanningModal'
 import './DayTimeline.css'
 
-export default function DayTimeline({ agentId, date }) {
-  const { planning, pauses, chargement, erreur } = usePlanningJour(agentId, date)
+function estAujourdhui(date) {
+  return formatDateISO(date) === formatDateISO(new Date())
+}
+
+function minutesMaintenant() {
+  const n = new Date()
+  return n.getHours() * 60 + n.getMinutes()
+}
+
+export default function DayTimeline({ agentId, nomAgent, date, editable }) {
+  const { planning, pauses, chargement, erreur, recharger } = usePlanningJour(agentId, date)
+  const [edition, setEdition] = useState(false)
 
   if (chargement) {
     return <p className="day-timeline-info">Chargement…</p>
@@ -13,42 +25,79 @@ export default function DayTimeline({ agentId, date }) {
     return <p className="day-timeline-erreur">Impossible de charger le planning de ce jour.</p>
   }
 
+  const boutonModifier = editable && (
+    <button className="day-timeline-modifier" onClick={() => setEdition(true)}>
+      Modifier ce jour
+    </button>
+  )
+
+  const modal = edition && (
+    <EditPlanningModal
+      agent={{ id: agentId, nom_complet: nomAgent }}
+      date={date}
+      planningActuel={planning}
+      onFerme={() => setEdition(false)}
+      onEnregistre={() => {
+        setEdition(false)
+        recharger()
+      }}
+    />
+  )
+
   if (!planning || planning.statut !== 'travail') {
     const libelle = planning ? LIBELLE_STATUT[planning.statut] : 'Non planifié'
-    return <p className="day-timeline-repos">{libelle}</p>
+    return (
+      <div>
+        <p className="day-timeline-repos">{libelle}</p>
+        {boutonModifier}
+        {modal}
+      </div>
+    )
   }
 
   const debut = heureVersMinutes(planning.heure_debut)
   const fin = heureVersMinutes(planning.heure_fin)
   const duree = fin - debut
 
+  const heureActuelle = minutesMaintenant()
+  const afficherHeureActuelle = estAujourdhui(date) && heureActuelle >= debut && heureActuelle <= fin
+  const positionActuelle = ((heureActuelle - debut) / duree) * 100
+
   return (
-    <div>
-      <div className="day-timeline-bar">
+    <div className="day-timeline-layout">
+      <div className="day-timeline-heures">
+        <span>{planning.heure_debut.slice(0, 5)}</span>
+        <span>{planning.heure_fin.slice(0, 5)}</span>
+      </div>
+
+      <div className="day-timeline-bar-vertical">
         {pauses.map((pause) => {
           const pDebut = heureVersMinutes(pause.heure_debut)
           const pFin = heureVersMinutes(pause.heure_fin)
-          const gauche = ((pDebut - debut) / duree) * 100
-          const largeur = ((pFin - pDebut) / duree) * 100
+          const haut = ((pDebut - debut) / duree) * 100
+          const hauteur = Math.max(((pFin - pDebut) / duree) * 100, 2.5)
           return (
             <div
               key={pause.id}
-              className={`day-timeline-pause ${pause.type_pause === 'dejeuner' ? 'dejeuner' : 'pause15'}`}
-              style={{ left: `${gauche}%`, width: `${largeur}%` }}
+              className="day-timeline-pause-v"
+              style={{ top: `${haut}%`, height: `${hauteur}%` }}
               title={`${LIBELLE_PAUSE[pause.type_pause]} — ${pause.heure_debut.slice(0, 5)} à ${pause.heure_fin.slice(0, 5)}`}
             />
           )
         })}
+        {afficherHeureActuelle && (
+          <div className="day-timeline-maintenant" style={{ top: `${positionActuelle}%` }} />
+        )}
       </div>
-      <div className="day-timeline-repere">
-        <span>{planning.heure_debut.slice(0, 5)}</span>
-        <span>{planning.heure_fin.slice(0, 5)}</span>
-      </div>
-      <div className="day-timeline-legende">
+
+      <div className="day-timeline-legende-v">
         <span><i className="pastille poste" /> Poste de travail</span>
-        <span><i className="pastille pause15" /> Pause 15 min</span>
-        <span><i className="pastille dejeuner" /> Déjeuner</span>
+        <span><i className="pastille pause15" /> Pause / déjeuner</span>
+        {afficherHeureActuelle && <span><i className="pastille maintenant" /> Heure actuelle</span>}
       </div>
+
+      {boutonModifier}
+      {modal}
     </div>
   )
 }

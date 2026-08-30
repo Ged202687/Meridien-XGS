@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { supabase } from './supabaseClient'
 import { formatDateISO } from './dateUtils'
 
@@ -7,6 +7,9 @@ export function usePlanningJour(agentId, date) {
   const [pauses, setPauses] = useState([])
   const [chargement, setChargement] = useState(true)
   const [erreur, setErreur] = useState(null)
+  const [version, setVersion] = useState(0)
+
+  const recharger = useCallback(() => setVersion((v) => v + 1), [])
 
   useEffect(() => {
     if (!agentId || !date) return
@@ -57,7 +60,7 @@ export function usePlanningJour(agentId, date) {
     return () => {
       annule = true
     }
-  }, [agentId, date])
+  }, [agentId, date, version])
 
-  return { planning, pauses, chargement, erreur }
+  return { planning, pauses, chargement, erreur, recharger }
 }

@@ -11,8 +11,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-family: var(--meridien-font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
   font-size: 15px;
 }
 
