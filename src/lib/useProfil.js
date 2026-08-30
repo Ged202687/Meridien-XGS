@@ -39,7 +39,7 @@ export function useProfil(session) {
     return () => {
       annule = true
     }
-  }, [session])
+  }, [session?.user?.id])
 
   return { profil, chargement, erreur }
 }
