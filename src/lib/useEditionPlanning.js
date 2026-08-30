@@ -52,14 +52,14 @@ export async function enregistrerPlanningJour({ agentId, date, statut, modeleHor
       {
         planning_id: planning.id,
         type_pause: 'pause15_tranche1',
-        heure_debut: params.heure_debut_tranche_1,
-        heure_fin: ajouterMinutes(params.heure_debut_tranche_1, params.duree_pause_min),
+        heure_debut: ajouterMinutes(params.heure_debut_tranche_1, params.delai_min_avant_pause_min),
+        heure_fin: ajouterMinutes(params.heure_debut_tranche_1, params.delai_min_avant_pause_min + params.duree_pause_min),
       },
       {
         planning_id: planning.id,
         type_pause: 'pause15_tranche2',
-        heure_debut: params.heure_debut_tranche_2,
-        heure_fin: ajouterMinutes(params.heure_debut_tranche_2, params.duree_pause_min),
+        heure_debut: ajouterMinutes(params.heure_debut_tranche_2, params.delai_min_avant_pause_min),
+        heure_fin: ajouterMinutes(params.heure_debut_tranche_2, params.delai_min_avant_pause_min + params.duree_pause_min),
       },
       {
         planning_id: planning.id,
