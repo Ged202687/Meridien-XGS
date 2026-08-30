@@ -64,7 +64,10 @@ export default function DemandeSwap({ profil }) {
       setMotif('')
       rechargerMesDemandes()
     } catch (err) {
-      setMessage({ type: 'erreur', texte: err.message ?? 'Envoi impossible.' })
+      const texte = err.message?.includes('row-level security')
+        ? "Ce jour est trop proche (moins de 48h) — l'échange n'est plus possible."
+        : err.message ?? 'Envoi impossible.'
+      setMessage({ type: 'erreur', texte })
     } finally {
       setEnvoi(false)
     }
@@ -74,6 +77,7 @@ export default function DemandeSwap({ profil }) {
     <div className="demande-swap">
       <div className="demande-swap-section">
         <p className="demande-swap-titre">1. Quel jour voulez-vous avoir off ?</p>
+        <p className="demande-swap-note">Les demandes doivent être faites au moins 48h à l'avance.</p>
         <div className="demande-swap-semaine-nav">
           <button onClick={() => setLundi((l) => ajouterSemaines(l, -1))}>←</button>
           <span>Semaine du {formatDateCourte(lundi)}</span>
@@ -81,7 +85,10 @@ export default function DemandeSwap({ profil }) {
         </div>
 
         {joursTravailles.length === 0 && (
-          <p className="demande-swap-vide">Aucun jour travaillé cette semaine (ou planning pas encore généré).</p>
+          <p className="demande-swap-vide">
+            Aucun jour éligible cette semaine (soit rien de travaillé, soit tous les jours sont à
+            moins de 48h).
+          </p>
         )}
 
         <div className="demande-swap-liste">

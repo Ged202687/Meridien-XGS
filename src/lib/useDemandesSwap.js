@@ -1,7 +1,8 @@
 import { supabase } from './supabaseClient'
 import { ajouterJours, formatDateISO } from './dateUtils'
 
-// Jours travaillés de l'agent sur la semaine (candidats à un échange)
+// Jours travaillés de l'agent sur la semaine, à au moins 48h d'ici
+// (candidats à un échange — la même règle est imposée côté base)
 export async function listerMesJoursTravailles(agentId, lundi) {
   const dimanche = ajouterJours(lundi, 6)
   const { data, error } = await supabase
@@ -13,7 +14,14 @@ export async function listerMesJoursTravailles(agentId, lundi) {
     .lte('date', formatDateISO(dimanche))
     .order('date')
   if (error) throw error
-  return data
+
+  const dansAuMoins48h = (dateStr) => {
+    const cible = new Date(dateStr)
+    const diffHeures = (cible.getTime() - Date.now()) / (1000 * 60 * 60)
+    return diffHeures >= 48
+  }
+
+  return data.filter((j) => dansAuMoins48h(j.date))
 }
 
 // Autres agents déjà en repos ce jour-là (candidats pour l'échange)
