@@ -2,24 +2,25 @@ import DayTimeline from './DayTimeline'
 import { LIBELLE_STATUT } from '../lib/dateUtils'
 import './AgentPlanningTable.css'
 
-export default function AgentPlanningTable({ agents, plannings, date, agentDeplie, setAgentDeplie, colonneEquipe }) {
+export default function AgentPlanningTable({ agents, plannings, date, agentDeplie, setAgentDeplie, colonneEquipe, editable, onEdit }) {
+  const nbColonnes = 2 + (colonneEquipe ? 1 : 0) + 1 + (editable ? 1 : 0) // nom+role (+equipe) +statut (+modifier)
+  const classeGrille = `agent-planning-ligne cols-${nbColonnes}`
+
   return (
     <div className="agent-planning-table">
-      <div className="agent-planning-ligne agent-planning-entete">
+      <div className={`${classeGrille} agent-planning-entete`}>
         <span>Nom</span>
         <span>Rôle</span>
         {colonneEquipe && <span>Équipe</span>}
         <span>Statut du jour</span>
+        {editable && <span></span>}
       </div>
       {agents.map((a) => {
         const p = plannings[a.id]
         const deplie = agentDeplie === a.id
         return (
           <div key={a.id}>
-            <div
-              className="agent-planning-ligne"
-              onClick={() => setAgentDeplie(deplie ? null : a.id)}
-            >
+            <div className={classeGrille} onClick={() => setAgentDeplie(deplie ? null : a.id)}>
               <span>{a.nom_complet}</span>
               <span className="muted">{a.role}</span>
               {colonneEquipe && <span className="muted">{a.equipe?.nom || '—'}</span>}
@@ -40,6 +41,17 @@ export default function AgentPlanningTable({ agents, plannings, date, agentDepli
                   </span>
                 )}
               </span>
+              {editable && (
+                <span
+                  className="agent-planning-modifier"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onEdit(a, p)
+                  }}
+                >
+                  Modifier
+                </span>
+              )}
             </div>
             {deplie && (
               <div className="agent-planning-detail">

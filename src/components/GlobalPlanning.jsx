@@ -3,6 +3,7 @@ import { listerAgents, listerEquipes } from '../lib/useAgents'
 import { listerPlanningsDuJourPourAgents } from '../lib/useEquipeAgents'
 import { ajouterJours, formatDateLongue } from '../lib/dateUtils'
 import AgentPlanningTable from './AgentPlanningTable'
+import EditPlanningModal from './EditPlanningModal'
 import './GlobalPlanning.css'
 
 export default function GlobalPlanning() {
@@ -13,6 +14,7 @@ export default function GlobalPlanning() {
   const [filtreEquipe, setFiltreEquipe] = useState('')
   const [filtreStatut, setFiltreStatut] = useState('')
   const [agentDeplie, setAgentDeplie] = useState(null)
+  const [edition, setEdition] = useState(null) // { agent, planning } | null
   const [chargement, setChargement] = useState(true)
   const [erreur, setErreur] = useState(null)
 
@@ -26,7 +28,7 @@ export default function GlobalPlanning() {
       .finally(() => setChargement(false))
   }, [])
 
-  useEffect(() => {
+  function rechargerPlannings() {
     if (agents.length === 0) return
     listerPlanningsDuJourPourAgents(agents.map((a) => a.id), date).then((data) => {
       const parAgent = {}
@@ -35,7 +37,9 @@ export default function GlobalPlanning() {
       })
       setPlannings(parAgent)
     })
-  }, [agents, date])
+  }
+
+  useEffect(rechargerPlannings, [agents, date])
 
   const agentsFiltres = agents.filter((a) => {
     const correspondEquipe = !filtreEquipe || a.equipe?.id === filtreEquipe
@@ -82,7 +86,22 @@ export default function GlobalPlanning() {
         agentDeplie={agentDeplie}
         setAgentDeplie={setAgentDeplie}
         colonneEquipe={true}
+        editable={true}
+        onEdit={(agent, planning) => setEdition({ agent, planning })}
       />
+
+      {edition && (
+        <EditPlanningModal
+          agent={edition.agent}
+          date={date}
+          planningActuel={edition.planning}
+          onFerme={() => setEdition(null)}
+          onEnregistre={() => {
+            setEdition(null)
+            rechargerPlannings()
+          }}
+        />
+      )}
     </div>
   )
 }

@@ -7,7 +7,6 @@
 
 .agent-planning-ligne {
   display: grid;
-  grid-template-columns: 2fr 1fr 1.4fr;
   align-items: center;
   padding: 12px 16px;
   font-size: 13.5px;
@@ -15,9 +14,9 @@
   cursor: pointer;
 }
 
-.agent-planning-table:has(.agent-planning-ligne > :nth-child(4)) .agent-planning-ligne {
-  grid-template-columns: 2fr 1fr 1fr 1.2fr;
-}
+.agent-planning-ligne.cols-3 { grid-template-columns: 2fr 1fr 1.4fr; }
+.agent-planning-ligne.cols-4 { grid-template-columns: 2fr 1fr 1fr 1.2fr; }
+.agent-planning-ligne.cols-5 { grid-template-columns: 2fr 1fr 1fr 1.2fr 0.8fr; }
 
 .agent-planning-ligne:hover {
   background: var(--meridien-surface-alt);
@@ -54,6 +53,12 @@
 .agent-planning-badge.rotatif {
   background: var(--meridien-warning-bg);
   color: var(--meridien-warning-text);
+}
+
+.agent-planning-modifier {
+  color: var(--meridien-accent-hover);
+  font-weight: 500;
+  text-align: right;
 }
 
 .agent-planning-detail {
