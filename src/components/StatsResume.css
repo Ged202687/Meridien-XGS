@@ -1,0 +1,31 @@
+.stats-resume {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stats-resume-item {
+  background: var(--meridien-surface);
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 10px;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 100px;
+}
+
+.stats-resume-valeur {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--meridien-text-dark);
+}
+
+.stats-resume-label {
+  font-size: 12px;
+  color: var(--meridien-text-dark-muted);
+}
+
+.stats-resume-muted .stats-resume-valeur {
+  color: var(--meridien-text-dark-muted);
+}

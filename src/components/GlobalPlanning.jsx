@@ -4,6 +4,7 @@ import { listerPlanningsDuJourPourAgents } from '../lib/useEquipeAgents'
 import { ajouterJours, formatDateLongue } from '../lib/dateUtils'
 import AgentPlanningTable from './AgentPlanningTable'
 import EditPlanningModal from './EditPlanningModal'
+import StatsResume from './StatsResume'
 import './GlobalPlanning.css'
 
 export default function GlobalPlanning() {
@@ -78,6 +79,8 @@ export default function GlobalPlanning() {
           <option value="repos">Repos</option>
         </select>
       </div>
+
+      <StatsResume agents={agentsFiltres} plannings={plannings} />
 
       <AgentPlanningTable
         agents={agentsFiltres}

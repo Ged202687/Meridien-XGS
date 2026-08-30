@@ -6,6 +6,7 @@ import {
 } from '../lib/useEquipeAgents'
 import { ajouterJours, formatDateLongue } from '../lib/dateUtils'
 import AgentPlanningTable from './AgentPlanningTable'
+import StatsResume from './StatsResume'
 import './TeamView.css'
 
 export default function TeamView({ profil }) {
@@ -77,6 +78,8 @@ export default function TeamView({ profil }) {
       <p className="team-view-equipes">
         Équipe{equipes.length > 1 ? 's' : ''} : {equipes.map((e) => e.nom).join(', ')}
       </p>
+
+      <StatsResume agents={agents} plannings={plannings} />
 
       <AgentPlanningTable
         agents={agents}
