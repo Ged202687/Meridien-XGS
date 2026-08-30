@@ -15,7 +15,10 @@ export default function App() {
     })
 
     const { data: abonnement } = supabase.auth.onAuthStateChange((_event, nouvelleSession) => {
-      setSession(nouvelleSession)
+      setSession((sessionActuelle) => {
+        if (sessionActuelle?.user?.id === nouvelleSession?.user?.id) return sessionActuelle
+        return nouvelleSession
+      })
     })
 
     return () => abonnement.subscription.unsubscribe()
