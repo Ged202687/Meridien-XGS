@@ -1,0 +1,61 @@
+.meridien-app-shell {
+  min-height: 100vh;
+  background: var(--meridien-app-bg);
+}
+
+.meridien-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
+}
+
+.meridien-page-title {
+  margin: 0 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--meridien-text-dark);
+}
+
+.meridien-readonly-banner {
+  background: var(--meridien-warning-bg);
+  color: var(--meridien-warning-text);
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 18px;
+}
+
+.meridien-switch {
+  display: inline-flex;
+  gap: 6px;
+  background: var(--meridien-surface-alt);
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.meridien-switch button {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  color: var(--meridien-text-dark-muted);
+  cursor: pointer;
+}
+
+.meridien-switch button.active {
+  background: var(--meridien-surface);
+  color: var(--meridien-text-dark);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.meridien-placeholder-card {
+  background: var(--meridien-surface);
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 12px;
+  padding: 24px;
+  color: var(--meridien-text-dark-muted);
+  font-size: 13.5px;
+}

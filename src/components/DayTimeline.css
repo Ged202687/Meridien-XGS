@@ -1,0 +1,73 @@
+.day-timeline-bar {
+  position: relative;
+  height: 56px;
+  border-radius: 8px;
+  background: #e6f0fb;
+  overflow: hidden;
+}
+
+.day-timeline-pause {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.day-timeline-pause.pause15 {
+  background: #f2c230;
+}
+
+.day-timeline-pause.dejeuner {
+  background: #f0997b;
+}
+
+.day-timeline-repere {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--meridien-text-dark-muted);
+  margin-top: 4px;
+}
+
+.day-timeline-legende {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--meridien-text-dark-muted);
+}
+
+.pastille {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.pastille.poste {
+  background: #85b7eb;
+}
+
+.pastille.pause15 {
+  background: #f2c230;
+}
+
+.pastille.dejeuner {
+  background: #f0997b;
+}
+
+.day-timeline-info,
+.day-timeline-repos {
+  font-size: 13.5px;
+  color: var(--meridien-text-dark-muted);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.day-timeline-erreur {
+  font-size: 13.5px;
+  color: var(--meridien-danger-text);
+  padding: 20px 0;
+  text-align: center;
+}

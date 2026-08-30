@@ -1,0 +1,51 @@
+.meridien-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: var(--meridien-bg-start);
+  color: #fff;
+}
+
+.meridien-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 15px;
+}
+
+.meridien-header-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+}
+
+.meridien-header-name {
+  font-weight: 500;
+}
+
+.meridien-header-role {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(242, 194, 48, 0.15);
+  color: var(--meridien-accent);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.meridien-header-logout {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.meridien-header-logout:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}

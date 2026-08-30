@@ -1,0 +1,111 @@
+.gestion-agents-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.gestion-agents-titre {
+  margin: 0;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--meridien-text-dark);
+}
+
+.gestion-agents-ajouter {
+  background: var(--meridien-accent);
+  border: none;
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1a1a2e;
+  cursor: pointer;
+}
+
+.gestion-agents-filtres {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.gestion-agents-filtres input {
+  flex: 1;
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13.5px;
+}
+
+.gestion-agents-filtres select {
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13.5px;
+}
+
+.gestion-agents-table {
+  background: var(--meridien-surface);
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.gestion-agents-ligne {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 0.8fr 0.8fr;
+  align-items: center;
+  padding: 12px 16px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--meridien-border-light);
+}
+
+.gestion-agents-ligne:last-child {
+  border-bottom: none;
+}
+
+.gestion-agents-entete {
+  font-size: 12px;
+  color: var(--meridien-text-dark-muted);
+  background: var(--meridien-surface-alt);
+}
+
+.gestion-agents-ligne .muted {
+  color: var(--meridien-text-dark-muted);
+}
+
+.badge {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.badge-actif {
+  background: var(--meridien-success-bg);
+  color: var(--meridien-success-text);
+}
+
+.badge-inactif {
+  background: var(--meridien-surface-alt);
+  color: var(--meridien-text-dark-muted);
+}
+
+.gestion-agents-modifier {
+  color: var(--meridien-accent-hover);
+  cursor: pointer;
+  text-align: right;
+  font-weight: 500;
+}
+
+.gestion-agents-info,
+.gestion-agents-erreur {
+  padding: 20px;
+  font-size: 13.5px;
+  color: var(--meridien-text-dark-muted);
+  text-align: center;
+}
+
+.gestion-agents-erreur {
+  color: var(--meridien-danger-text);
+}

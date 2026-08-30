@@ -1,0 +1,41 @@
+.global-planning-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--meridien-text-dark-muted);
+  margin-bottom: 12px;
+}
+
+.global-planning-nav button {
+  border: 1px solid var(--meridien-border-light);
+  background: var(--meridien-surface);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.global-planning-filtres {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.global-planning-filtres select {
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.global-planning-info,
+.global-planning-erreur {
+  font-size: 13.5px;
+  color: var(--meridien-text-dark-muted);
+  padding: 16px 0;
+}
+
+.global-planning-erreur {
+  color: var(--meridien-danger-text);
+}

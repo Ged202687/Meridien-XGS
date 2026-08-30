@@ -1,0 +1,70 @@
+.agent-planning-table {
+  background: var(--meridien-surface);
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.agent-planning-ligne {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.4fr;
+  align-items: center;
+  padding: 12px 16px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--meridien-border-light);
+  cursor: pointer;
+}
+
+.agent-planning-table:has(.agent-planning-ligne > :nth-child(4)) .agent-planning-ligne {
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+}
+
+.agent-planning-ligne:hover {
+  background: var(--meridien-surface-alt);
+}
+
+.agent-planning-entete {
+  font-size: 12px;
+  color: var(--meridien-text-dark-muted);
+  background: var(--meridien-surface-alt);
+  cursor: default;
+}
+
+.agent-planning-ligne .muted {
+  color: var(--meridien-text-dark-muted);
+}
+
+.agent-planning-badge {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.agent-planning-badge.neutre {
+  background: var(--meridien-surface-alt);
+  color: var(--meridien-text-dark-muted);
+}
+
+.agent-planning-badge.fixe {
+  background: var(--meridien-danger-bg);
+  color: var(--meridien-danger-text);
+}
+
+.agent-planning-badge.rotatif {
+  background: var(--meridien-warning-bg);
+  color: var(--meridien-warning-text);
+}
+
+.agent-planning-detail {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--meridien-border-light);
+  background: var(--meridien-app-bg);
+}
+
+.agent-planning-vide {
+  font-size: 13.5px;
+  color: var(--meridien-text-dark-muted);
+  padding: 16px;
+  text-align: center;
+}

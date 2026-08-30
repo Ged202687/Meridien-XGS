@@ -1,0 +1,128 @@
+.agent-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 35, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.agent-modal {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px 28px;
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.agent-modal h2 {
+  margin: 0 0 18px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--meridien-text-dark);
+}
+
+.agent-modal-field {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.agent-modal-field label {
+  font-size: 12px;
+  color: var(--meridien-text-dark-muted);
+}
+
+.agent-modal-field input[type='text'],
+.agent-modal-field input:not([type='checkbox']),
+.agent-modal-field select {
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 14px;
+  color: var(--meridien-text-dark);
+}
+
+.agent-modal-actif {
+  justify-content: center;
+}
+
+.agent-modal-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.agent-modal-resultats {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.agent-modal-resultats li button {
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13.5px;
+}
+
+.agent-modal-resultats li button:hover {
+  background: var(--meridien-surface-alt);
+}
+
+.agent-modal-compte-choisi {
+  font-size: 13px;
+  color: var(--meridien-text-dark-muted);
+  margin: 0 0 14px;
+}
+
+.agent-modal-erreur {
+  color: var(--meridien-danger-text);
+  font-size: 13px;
+  margin: 0 0 12px;
+}
+
+.agent-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.agent-modal-actions-droite {
+  display: flex;
+  gap: 10px;
+}
+
+.agent-modal-actions button {
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  cursor: pointer;
+  border: 1px solid var(--meridien-border-light);
+  background: #fff;
+}
+
+.agent-modal-enregistrer {
+  background: var(--meridien-accent);
+  border-color: var(--meridien-accent);
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+.agent-modal-supprimer {
+  color: var(--meridien-danger-text);
+  border-color: var(--meridien-danger-bg);
+  background: var(--meridien-danger-bg);
+}

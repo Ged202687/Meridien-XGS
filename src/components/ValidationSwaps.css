@@ -1,0 +1,134 @@
+.validation-swaps-filtres {
+  display: flex;
+  gap: 6px;
+  background: var(--meridien-surface-alt);
+  padding: 4px;
+  border-radius: 10px;
+  width: fit-content;
+  margin-bottom: 16px;
+}
+
+.validation-swaps-filtres button {
+  border: none;
+  background: transparent;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--meridien-text-dark-muted);
+  cursor: pointer;
+}
+
+.validation-swaps-filtres button.active {
+  background: var(--meridien-surface);
+  color: var(--meridien-text-dark);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.validation-swaps-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.validation-swaps-carte {
+  background: var(--meridien-surface);
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.validation-swaps-titre {
+  margin: 0 0 4px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--meridien-text-dark);
+}
+
+.validation-swaps-detail {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: var(--meridien-text-dark-muted);
+}
+
+.validation-swaps-motif {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--meridien-text-dark-muted);
+  font-style: italic;
+}
+
+.validation-swaps-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.validation-swaps-statut {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.validation-swaps-statut.en_attente {
+  background: var(--meridien-warning-bg);
+  color: var(--meridien-warning-text);
+}
+
+.validation-swaps-statut.validee {
+  background: var(--meridien-success-bg);
+  color: var(--meridien-success-text);
+}
+
+.validation-swaps-statut.refusee {
+  background: var(--meridien-danger-bg);
+  color: var(--meridien-danger-text);
+}
+
+.validation-swaps-boutons {
+  display: flex;
+  gap: 8px;
+}
+
+.validation-swaps-boutons button {
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--meridien-border-light);
+}
+
+.validation-swaps-boutons button.valider {
+  background: var(--meridien-success-bg);
+  color: var(--meridien-success-text);
+  border-color: var(--meridien-success-bg);
+}
+
+.validation-swaps-boutons button.refuser {
+  background: var(--meridien-danger-bg);
+  color: var(--meridien-danger-text);
+  border-color: var(--meridien-danger-bg);
+}
+
+.validation-swaps-boutons button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.validation-swaps-info,
+.validation-swaps-erreur {
+  font-size: 13.5px;
+  color: var(--meridien-text-dark-muted);
+  padding: 16px 0;
+}
+
+.validation-swaps-erreur {
+  color: var(--meridien-danger-text);
+}
