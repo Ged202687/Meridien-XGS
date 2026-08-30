@@ -5,6 +5,7 @@ import { ajouterJours, formatDateLongue } from '../lib/dateUtils'
 import AgentPlanningTable from './AgentPlanningTable'
 import EditPlanningModal from './EditPlanningModal'
 import StatsResume from './StatsResume'
+import PlanningTabs from './PlanningTabs'
 import './GlobalPlanning.css'
 
 export default function GlobalPlanning() {
@@ -14,8 +15,9 @@ export default function GlobalPlanning() {
   const [date, setDate] = useState(new Date())
   const [filtreEquipe, setFiltreEquipe] = useState('')
   const [filtreStatut, setFiltreStatut] = useState('')
+  const [agentSelectionneId, setAgentSelectionneId] = useState('')
   const [agentDeplie, setAgentDeplie] = useState(null)
-  const [edition, setEdition] = useState(null) // { agent, planning } | null
+  const [edition, setEdition] = useState(null)
   const [chargement, setChargement] = useState(true)
   const [erreur, setErreur] = useState(null)
 
@@ -42,6 +44,11 @@ export default function GlobalPlanning() {
 
   useEffect(rechargerPlannings, [agents, date])
 
+  if (chargement) return <p className="global-planning-info">Chargement…</p>
+  if (erreur) return <p className="global-planning-erreur">{erreur}</p>
+
+  const agentSelectionne = agents.find((a) => a.id === agentSelectionneId)
+
   const agentsFiltres = agents.filter((a) => {
     const correspondEquipe = !filtreEquipe || a.equipe?.id === filtreEquipe
     if (!correspondEquipe) return false
@@ -52,58 +59,73 @@ export default function GlobalPlanning() {
     return true
   })
 
-  if (chargement) return <p className="global-planning-info">Chargement…</p>
-  if (erreur) return <p className="global-planning-erreur">{erreur}</p>
-
   return (
     <div>
-      <div className="global-planning-nav">
-        <button onClick={() => setDate((d) => ajouterJours(d, -1))}>←</button>
-        <span>{formatDateLongue(date)}</span>
-        <button onClick={() => setDate(new Date())}>Aujourd'hui</button>
-        <button onClick={() => setDate((d) => ajouterJours(d, 1))}>→</button>
-      </div>
-
-      <div className="global-planning-filtres">
-        <select value={filtreEquipe} onChange={(e) => setFiltreEquipe(e.target.value)}>
-          <option value="">Toutes les équipes</option>
-          {equipes.map((eq) => (
-            <option key={eq.id} value={eq.id}>
-              {eq.nom}
+      <div className="global-planning-selecteur">
+        <label>Voir le calendrier d'un agent en particulier</label>
+        <select value={agentSelectionneId} onChange={(e) => setAgentSelectionneId(e.target.value)}>
+          <option value="">— Vue d'ensemble (tous les agents) —</option>
+          {agents.map((a) => (
+            <option key={a.id} value={a.id}>
+              {a.nom_complet}
             </option>
           ))}
         </select>
-        <select value={filtreStatut} onChange={(e) => setFiltreStatut(e.target.value)}>
-          <option value="">Tous les statuts</option>
-          <option value="travail">Travail</option>
-          <option value="repos">Repos</option>
-        </select>
       </div>
 
-      <StatsResume agents={agentsFiltres} plannings={plannings} />
+      {agentSelectionne ? (
+        <PlanningTabs agentId={agentSelectionne.id} nomAgent={agentSelectionne.nom_complet} />
+      ) : (
+        <>
+          <div className="global-planning-nav">
+            <button onClick={() => setDate((d) => ajouterJours(d, -1))}>←</button>
+            <span>{formatDateLongue(date)}</span>
+            <button onClick={() => setDate(new Date())}>Aujourd'hui</button>
+            <button onClick={() => setDate((d) => ajouterJours(d, 1))}>→</button>
+          </div>
 
-      <AgentPlanningTable
-        agents={agentsFiltres}
-        plannings={plannings}
-        date={date}
-        agentDeplie={agentDeplie}
-        setAgentDeplie={setAgentDeplie}
-        colonneEquipe={true}
-        editable={true}
-        onEdit={(agent, planning) => setEdition({ agent, planning })}
-      />
+          <div className="global-planning-filtres">
+            <select value={filtreEquipe} onChange={(e) => setFiltreEquipe(e.target.value)}>
+              <option value="">Toutes les équipes</option>
+              {equipes.map((eq) => (
+                <option key={eq.id} value={eq.id}>
+                  {eq.nom}
+                </option>
+              ))}
+            </select>
+            <select value={filtreStatut} onChange={(e) => setFiltreStatut(e.target.value)}>
+              <option value="">Tous les statuts</option>
+              <option value="travail">Travail</option>
+              <option value="repos">Repos</option>
+            </select>
+          </div>
 
-      {edition && (
-        <EditPlanningModal
-          agent={edition.agent}
-          date={date}
-          planningActuel={edition.planning}
-          onFerme={() => setEdition(null)}
-          onEnregistre={() => {
-            setEdition(null)
-            rechargerPlannings()
-          }}
-        />
+          <StatsResume agents={agentsFiltres} plannings={plannings} />
+
+          <AgentPlanningTable
+            agents={agentsFiltres}
+            plannings={plannings}
+            date={date}
+            agentDeplie={agentDeplie}
+            setAgentDeplie={setAgentDeplie}
+            colonneEquipe={true}
+            editable={true}
+            onEdit={(agent, planning) => setEdition({ agent, planning })}
+          />
+
+          {edition && (
+            <EditPlanningModal
+              agent={edition.agent}
+              date={date}
+              planningActuel={edition.planning}
+              onFerme={() => setEdition(null)}
+              onEnregistre={() => {
+                setEdition(null)
+                rechargerPlannings()
+              }}
+            />
+          )}
+        </>
       )}
     </div>
   )

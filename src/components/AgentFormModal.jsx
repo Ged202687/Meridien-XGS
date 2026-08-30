@@ -199,6 +199,7 @@ export default function AgentFormModal({ agent, equipes, superviseurs, onFerme, 
                   <option value="">Automatique</option>
                   <option value="A">A</option>
                   <option value="B">B</option>
+                  <option value="C">C</option>
                 </select>
               </div>
 
