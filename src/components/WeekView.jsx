@@ -13,7 +13,7 @@ export default function WeekView({ agentId, lundi, onChoisirJour }) {
   return (
     <div className="week-view">
       {jours.map(({ date, planning }, i) => {
-        const estRepos = planning && planning.statut !== 'travail'
+        const estRepos = planning && planning.statut !== 'travail' && planning.statut !== 'formation'
         const nonPlanifie = !planning
         return (
           <div
@@ -23,8 +23,9 @@ export default function WeekView({ agentId, lundi, onChoisirJour }) {
           >
             <span>{JOURS_COURTS[i]} {date.getDate()}</span>
             {nonPlanifie && <span className="week-view-badge badge-neutre">Non planifié</span>}
-            {planning && planning.statut === 'travail' && (
+            {(planning?.statut === 'travail' || planning?.statut === 'formation') && (
               <span className="week-view-heures">
+                {planning.statut === 'formation' && 'Formation '}
                 {planning.heure_debut?.slice(0, 5)} — {planning.heure_fin?.slice(0, 5)}
               </span>
             )}

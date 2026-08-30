@@ -2,6 +2,7 @@ import { useState } from 'react'
 import GestionAgents from '../components/GestionAgents'
 import ValidationSwaps from '../components/ValidationSwaps'
 import GlobalPlanning from '../components/GlobalPlanning'
+import InjecterFormation from '../components/InjecterFormation'
 
 export default function SuperAdminSpace({ profil }) {
   const [onglet, setOnglet] = useState('planning')
@@ -20,11 +21,15 @@ export default function SuperAdminSpace({ profil }) {
         <button className={onglet === 'swaps' ? 'active' : ''} onClick={() => setOnglet('swaps')}>
           Demandes d'échange
         </button>
+        <button className={onglet === 'formation' ? 'active' : ''} onClick={() => setOnglet('formation')}>
+          Formations
+        </button>
       </div>
 
       {onglet === 'planning' && <GlobalPlanning />}
       {onglet === 'agents' && <GestionAgents />}
       {onglet === 'swaps' && <ValidationSwaps />}
+      {onglet === 'formation' && <InjecterFormation />}
     </div>
   )
 }

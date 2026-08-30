@@ -81,6 +81,7 @@ export const LIBELLE_STATUT = {
   repos_rotatif: 'Repos',
   conge: 'Congé',
   absence: 'Absence',
+  formation: 'Formation',
 }
 
 export const LIBELLE_PAUSE = {

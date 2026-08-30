@@ -9,11 +9,14 @@ const STATUTS = [
   { id: 'repos_rotatif', label: 'Repos rotatif' },
   { id: 'conge', label: 'Congé' },
   { id: 'absence', label: 'Absence' },
+  { id: 'formation', label: 'Formation' },
 ]
 
 export default function EditPlanningModal({ agent, date, planningActuel, onFerme, onEnregistre }) {
   const [statut, setStatut] = useState(planningActuel?.statut ?? 'travail')
   const [modeleId, setModeleId] = useState(planningActuel?.modele_horaire_id ?? '')
+  const [heureDebutLibre, setHeureDebutLibre] = useState(planningActuel?.heure_debut?.slice(0, 5) ?? '09:00')
+  const [heureFinLibre, setHeureFinLibre] = useState(planningActuel?.heure_fin?.slice(0, 5) ?? '12:00')
   const [modeles, setModeles] = useState([])
   const [enregistrement, setEnregistrement] = useState(false)
   const [erreur, setErreur] = useState(null)
@@ -36,6 +39,10 @@ export default function EditPlanningModal({ agent, date, planningActuel, onFerme
       setErreur('Choisissez un horaire.')
       return
     }
+    if (statut === 'formation' && heureFinLibre <= heureDebutLibre) {
+      setErreur("L'heure de fin doit être après l'heure de début.")
+      return
+    }
 
     setEnregistrement(true)
     try {
@@ -45,8 +52,8 @@ export default function EditPlanningModal({ agent, date, planningActuel, onFerme
         date,
         statut,
         modeleHoraireId: statut === 'travail' ? modeleId : null,
-        heureDebut: statut === 'travail' ? modele.heure_debut : null,
-        heureFin: statut === 'travail' ? modele.heure_fin : null,
+        heureDebut: statut === 'travail' ? modele.heure_debut : statut === 'formation' ? heureDebutLibre : null,
+        heureFin: statut === 'travail' ? modele.heure_fin : statut === 'formation' ? heureFinLibre : null,
       })
       onEnregistre()
     } catch (err) {
@@ -86,6 +93,26 @@ export default function EditPlanningModal({ agent, date, planningActuel, onFerme
                   </option>
                 ))}
               </select>
+            </div>
+          )}
+
+          {statut === 'formation' && (
+            <div className="edit-planning-field">
+              <label>Horaires de la formation</label>
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <input
+                  type="time"
+                  value={heureDebutLibre}
+                  onChange={(e) => setHeureDebutLibre(e.target.value)}
+                  style={{ flex: 1, border: '1px solid var(--meridien-border-light)', borderRadius: '8px', padding: '9px 10px' }}
+                />
+                <input
+                  type="time"
+                  value={heureFinLibre}
+                  onChange={(e) => setHeureFinLibre(e.target.value)}
+                  style={{ flex: 1, border: '1px solid var(--meridien-border-light)', borderRadius: '8px', padding: '9px 10px' }}
+                />
+              </div>
             </div>
           )}
 

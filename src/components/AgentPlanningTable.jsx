@@ -26,12 +26,13 @@ export default function AgentPlanningTable({ agents, plannings, date, agentDepli
               {colonneEquipe && <span className="muted">{a.equipe?.nom || '—'}</span>}
               <span>
                 {!p && <span className="agent-planning-badge neutre">Non planifié</span>}
-                {p?.statut === 'travail' && (
+                {(p?.statut === 'travail' || p?.statut === 'formation') && (
                   <span className="muted">
+                    {p.statut === 'formation' && 'Formation '}
                     {p.heure_debut?.slice(0, 5)} — {p.heure_fin?.slice(0, 5)}
                   </span>
                 )}
-                {p && p.statut !== 'travail' && (
+                {p && p.statut !== 'travail' && p.statut !== 'formation' && (
                   <span
                     className={`agent-planning-badge ${
                       p.statut === 'repos_fixe' ? 'fixe' : p.statut === 'repos_rotatif' ? 'rotatif' : 'neutre'

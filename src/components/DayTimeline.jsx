@@ -44,11 +44,23 @@ export default function DayTimeline({ agentId, nomAgent, date, editable }) {
     />
   )
 
-  if (!planning || planning.statut !== 'travail') {
+  if (!planning || (planning.statut !== 'travail' && planning.statut !== 'formation')) {
     const libelle = planning ? LIBELLE_STATUT[planning.statut] : 'Non planifié'
     return (
       <div>
         <p className="day-timeline-repos">{libelle}</p>
+        {boutonModifier}
+        {modal}
+      </div>
+    )
+  }
+
+  if (planning.statut === 'formation') {
+    return (
+      <div>
+        <p className="day-timeline-repos">
+          Formation — {planning.heure_debut?.slice(0, 5)} à {planning.heure_fin?.slice(0, 5)}
+        </p>
         {boutonModifier}
         {modal}
       </div>

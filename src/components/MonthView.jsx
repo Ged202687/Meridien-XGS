@@ -18,7 +18,7 @@ export default function MonthView({ agentId, mois, onChoisirJour }) {
       </div>
       <div className="month-view-grille">
         {semaines.flat().map(({ date, planning, horsMois }, i) => {
-          const estRepos = planning && planning.statut !== 'travail'
+          const estRepos = planning && planning.statut !== 'travail' && planning.statut !== 'formation'
           return (
             <div
               key={i}
@@ -32,6 +32,7 @@ export default function MonthView({ agentId, mois, onChoisirJour }) {
                 {!planning && '—'}
                 {planning?.statut === 'travail' &&
                   `${planning.heure_debut?.slice(0, 5)}-${planning.heure_fin?.slice(0, 5)}`}
+                {planning?.statut === 'formation' && 'Formation'}
                 {estRepos && 'Repos'}
               </span>
             </div>
