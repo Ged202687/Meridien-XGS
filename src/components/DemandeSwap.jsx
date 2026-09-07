@@ -36,7 +36,12 @@ export default function DemandeSwap({ profil }) {
   useEffect(() => {
     if (!jourChoisi) return
     setCandidatChoisi(null)
-    listerCandidatsPourDate(profil.id, jourChoisi.date).then(setCandidats)
+    listerCandidatsPourDate(profil.id, jourChoisi.date)
+      .then(setCandidats)
+      .catch((err) => {
+        setCandidats([])
+        setMessage({ type: 'erreur', texte: err.message ?? 'Impossible de charger les collègues disponibles.' })
+      })
   }, [jourChoisi, profil.id])
 
   function rechargerMesDemandes() {
