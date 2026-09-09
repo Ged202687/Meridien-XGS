@@ -1,4 +1,5 @@
 import { supabase } from './supabaseClient'
+import { formatDateISO } from './dateUtils'
 
 // Équipes que ce profil gère : directement (coach) ou via ses coachs (superviseur)
 export async function listerEquipesGerees(profil) {
@@ -39,7 +40,7 @@ export async function listerAgentsDesEquipes(equipeIds) {
 
 export async function listerPlanningsDuJourPourAgents(agentIds, date) {
   if (agentIds.length === 0) return []
-  const iso = date.toISOString().slice(0, 10)
+  const iso = formatDateISO(date)
   const { data, error } = await supabase
     .from('plannings')
     .select('*')

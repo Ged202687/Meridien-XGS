@@ -13,7 +13,13 @@ export function minutesVersHeure(min) {
 
 export function formatDateISO(date) {
   if (typeof date === 'string') return date.slice(0, 10)
-  return date.toISOString().slice(0, 10)
+  // Construit la date à partir des composants locaux : .toISOString() convertit
+  // en UTC et peut faire basculer sur le jour précédent/suivant selon le fuseau
+  // horaire du navigateur, décalant tout le planning d'un jour.
+  const annee = date.getFullYear()
+  const mois = String(date.getMonth() + 1).padStart(2, '0')
+  const jour = String(date.getDate()).padStart(2, '0')
+  return `${annee}-${mois}-${jour}`
 }
 
 export function ajouterJours(date, n) {
