@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { supabase } from './lib/supabaseClient'
 import Login from './pages/Login'
 import Routage from './pages/Routage'
+import { SOUS_PORTAIL, allerAuPortail } from './lib/portail'
 import './styles/page.css'
 
 export default function App() {
@@ -27,6 +28,13 @@ export default function App() {
   if (!pret) return null
 
   if (!session) {
+    // Sous le portail : pas d'ecran de connexion propre a Méridien, c'est le
+    // portail qui connecte (et qui renvoie ici). Cela vaut aussi apres une
+    // deconnexion, faite ici ou depuis un autre outil.
+    if (SOUS_PORTAIL) {
+      allerAuPortail()
+      return null
+    }
     return <Login onConnecte={setSession} />
   }
 
