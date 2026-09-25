@@ -94,12 +94,27 @@ export function ShiftBilanContenu({ resume, enCours, erreurAction, onValider, on
 
   const sansActivite = resume.segments.every((s) => s.statut === 'deconnecte')
 
+  // Les instantanés validés avant la règle du déjeuner n'ont ni déjeuner ni taux d'occupation.
+  const regleDejeuner = totaux.dejeuner_secondes !== undefined
+
   const indicateurs = [
     { label: 'Production', valeur: totaux.prod_secondes },
     { label: 'Pauses', valeur: totaux.pause_secondes },
-    { label: 'Dépassement de pause', valeur: totaux.depassement_secondes, alerte: true },
-    { label: "Absence sur l'horaire", valeur: totaux.absence_secondes, alerte: true },
   ]
+  if (regleDejeuner) {
+    indicateurs.push({ label: 'Déjeuner', valeur: totaux.dejeuner_secondes })
+  }
+  if (totaux.taux_occupation != null) {
+    indicateurs.push({
+      label: "Taux d'occupation",
+      valeur: totaux.taux_occupation,
+      texte: `${Math.round(totaux.taux_occupation * 100)} %`,
+    })
+  }
+  indicateurs.push(
+    { label: 'Dépassement de pause', valeur: totaux.depassement_secondes, alerte: true },
+    { label: "Absence sur l'horaire", valeur: totaux.absence_secondes, alerte: true }
+  )
   if (totaux.retard_secondes > 0) {
     indicateurs.push({ label: 'Retard', valeur: totaux.retard_secondes, alerte: true })
   }
@@ -145,6 +160,13 @@ export function ShiftBilanContenu({ resume, enCours, erreurAction, onValider, on
       {totaux.arrivee && (
         <p className="shift-bilan-presence">
           Première activité {formatHeure(totaux.arrivee)} · Dernière activité {formatHeure(totaux.depart)}
+        </p>
+      )}
+
+      {regleDejeuner && (
+        <p className="shift-bilan-note">
+          Temps de travail attendu : {formatDuree(totaux.travail_attendu_secondes)}. Le déjeuner n'est compté ni
+          comme temps de travail, ni dans le taux d'occupation.
         </p>
       )}
 

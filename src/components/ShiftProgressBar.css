@@ -53,6 +53,8 @@
 .shift-bar-segment.deconnecte { background: #d9d4c7; }
 .shift-bar-segment.horaire { background: #efe0ae; box-shadow: none; }
 .shift-bar-segment.pause-prevue { background: var(--meridien-warning-text); opacity: 0.75; }
+.shift-bar-segment.dejeuner { background: #5b6690; }
+.shift-bar-segment.pause-prevue.dejeuner { opacity: 0.55; }
 
 .shift-bar-segment.depassement {
   background: repeating-linear-gradient(
@@ -104,6 +106,7 @@
 
 .shift-bar-pastille.en_prod { background: var(--meridien-success-text); }
 .shift-bar-pastille.en_pause { background: var(--meridien-accent); }
+.shift-bar-pastille.dejeuner { background: #5b6690; }
 .shift-bar-pastille.deconnecte { background: #d9d4c7; }
 .shift-bar-pastille.depassement { background: var(--meridien-danger-text); }
 .shift-bar-pastille.pause-prevue { background: var(--meridien-warning-text); opacity: 0.75; }

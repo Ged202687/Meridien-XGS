@@ -38,6 +38,8 @@ export default function ShiftProgressBar({ resume }) {
   const graduations = []
   for (let t = debut; t <= fin; t += pas) graduations.push(t)
 
+  const dejeuners = resume.pauses_reelles.filter((p) => p.compte_presence === false)
+
   const depassements = resume.pauses_reelles
     .filter((p) => p.depassement_secondes > 0)
     .map((p) => ({ pause: p, debut: instant(p.debut) + p.duree_max_secondes * 1000, fin: instant(p.fin) }))
@@ -64,6 +66,14 @@ export default function ShiftProgressBar({ resume }) {
               />
             )
           })}
+          {dejeuners.map((p, i) => (
+            <div
+              key={`dejeuner-${i}`}
+              className="shift-bar-segment dejeuner"
+              style={bloc(instant(p.debut), instant(p.fin))}
+              title={`${p.nom} · ${formatHeure(p.debut)} → ${formatHeure(p.fin)} (${formatDuree(p.secondes)}) · non travaillé`}
+            />
+          ))}
           {depassements.map((x, i) => (
             <div
               key={`depassement-${i}`}
@@ -88,7 +98,7 @@ export default function ShiftProgressBar({ resume }) {
           {resume.pauses_prevues.map((p, i) => (
             <div
               key={i}
-              className="shift-bar-segment pause-prevue"
+              className={`shift-bar-segment pause-prevue ${p.type === 'dejeuner' ? 'dejeuner' : ''}`}
               style={bloc(instant(p.debut), instant(p.fin))}
               title={`${LIBELLE_PAUSE[p.type] ?? 'Pause'} prévue · ${formatHeure(p.debut)} → ${formatHeure(p.fin)}`}
             />
@@ -121,6 +131,7 @@ export default function ShiftProgressBar({ resume }) {
       <div className="shift-bar-legende">
         <span><i className="shift-bar-pastille en_prod" />Production</span>
         <span><i className="shift-bar-pastille en_pause" />Pause</span>
+        <span><i className="shift-bar-pastille dejeuner" />Déjeuner (non travaillé)</span>
         <span><i className="shift-bar-pastille deconnecte" />Déconnecté</span>
         <span><i className="shift-bar-pastille depassement" />Dépassement de pause</span>
         <span><i className="shift-bar-pastille pause-prevue" />Pause prévue</span>
