@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import {
   listerEquipesGerees,
   listerAgentsDesEquipes,
+  listerCoachsSupervises,
   listerPlanningsDuJourPourAgents,
 } from '../lib/useEquipeAgents'
 import { ajouterJours, formatDateLongue } from '../lib/dateUtils'
@@ -28,7 +29,12 @@ export default function TeamView({ profil }) {
         if (annule) return
         setEquipes(eq)
 
-        const ag = await listerAgentsDesEquipes(eq.map((e) => e.id))
+        let ag = await listerAgentsDesEquipes(eq.map((e) => e.id))
+        if (profil.role === 'superviseur') {
+          const coachs = await listerCoachsSupervises(profil.id)
+          const dejaListes = new Set(ag.map((a) => a.id))
+          ag = [...coachs.filter((c) => !dejaListes.has(c.id)), ...ag]
+        }
         if (annule) return
         setAgents(ag)
       } catch (err) {
@@ -62,7 +68,7 @@ export default function TeamView({ profil }) {
   if (chargement) return <p className="team-view-info">Chargement…</p>
   if (erreur) return <p className="team-view-erreur">{erreur}</p>
 
-  if (equipes.length === 0) {
+  if (equipes.length === 0 && agents.length === 0) {
     return <p className="team-view-info">Aucune équipe rattachée pour le moment.</p>
   }
 

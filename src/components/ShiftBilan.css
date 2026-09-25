@@ -1,0 +1,213 @@
+.shift-bilan {
+  margin-top: 22px;
+  padding: 18px 20px;
+  background: var(--meridien-surface);
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.shift-bilan-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.shift-bilan-entete h3 {
+  margin: 0;
+  font-family: var(--meridien-font-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--meridien-text-dark);
+}
+
+.shift-bilan-statut {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.shift-bilan-statut.valide {
+  background: var(--meridien-success-bg);
+  color: var(--meridien-success-text);
+}
+
+.shift-bilan-statut.attente {
+  background: var(--meridien-warning-bg);
+  color: var(--meridien-warning-text);
+}
+
+.shift-bilan-note,
+.shift-bilan-presence {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--meridien-text-dark-muted);
+}
+
+.shift-bilan-presence {
+  font-variant-numeric: tabular-nums;
+}
+
+.shift-bilan-indicateurs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.shift-bilan-indicateur {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  background: var(--meridien-app-bg);
+}
+
+.shift-bilan-indicateur span {
+  font-size: 11.5px;
+  color: var(--meridien-text-dark-muted);
+}
+
+.shift-bilan-indicateur strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--meridien-text-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.shift-bilan-indicateur.alerte {
+  background: var(--meridien-danger-bg);
+}
+
+.shift-bilan-indicateur.alerte strong,
+.shift-bilan-indicateur.alerte span {
+  color: var(--meridien-danger-text);
+}
+
+.shift-bilan-pauses {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--meridien-border-light);
+}
+
+.shift-bilan-pauses li {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) 1fr 1.2fr minmax(0, 1.2fr);
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 12.5px;
+  border-bottom: 1px solid var(--meridien-border-light);
+  font-variant-numeric: tabular-nums;
+}
+
+.shift-bilan-pause-nom {
+  font-weight: 500;
+  color: var(--meridien-text-dark);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shift-bilan-pause-horaire,
+.shift-bilan-pause-duree {
+  color: var(--meridien-text-dark-muted);
+}
+
+.shift-bilan-pause-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.shift-bilan-pause-tags em {
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--meridien-surface-alt);
+  color: var(--meridien-text-dark-muted);
+}
+
+.shift-bilan-pause-tags em.alerte {
+  background: var(--meridien-danger-bg);
+  color: var(--meridien-danger-text);
+}
+
+@media (max-width: 560px) {
+  .shift-bilan-pauses li {
+    grid-template-columns: 1fr 1fr;
+  }
+  .shift-bilan-pause-tags {
+    justify-content: flex-start;
+  }
+}
+
+.shift-bilan-pied {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.shift-bilan-pied p {
+  flex: 1 1 220px;
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--meridien-text-dark-muted);
+}
+
+.shift-bilan-pied button {
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  cursor: pointer;
+  border: 1px solid var(--meridien-border-light);
+  background: #fff;
+  color: var(--meridien-text-dark);
+  transition: background-color 120ms ease, transform 120ms ease;
+}
+
+.shift-bilan-pied button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.shift-bilan-pied button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.shift-bilan-pied .shift-bilan-valider {
+  background: var(--meridien-accent);
+  border-color: var(--meridien-accent);
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+.shift-bilan-pied .shift-bilan-valider:hover:not(:disabled) {
+  background: var(--meridien-accent-hover);
+}
+
+.shift-bilan-pied .shift-bilan-devalider:hover:not(:disabled) {
+  background: var(--meridien-surface-alt);
+}
+
+.shift-bilan-info {
+  margin: 0;
+  font-size: 13px;
+  color: var(--meridien-text-dark-muted);
+}
+
+.shift-bilan-erreur {
+  margin: 0;
+  font-size: 13px;
+  color: var(--meridien-danger-text);
+}

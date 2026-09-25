@@ -1,0 +1,109 @@
+.shift-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shift-bar-ligne {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.shift-bar-etiquette {
+  font-size: 11px;
+  color: var(--meridien-text-dark-muted);
+  text-align: right;
+}
+
+/* Hachures = aucune donnée Auréo sur ce créneau */
+.shift-bar-piste {
+  position: relative;
+  height: 26px;
+  border-radius: 7px;
+  overflow: hidden;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--meridien-surface-alt) 0 6px,
+    #f8f6f0 6px 12px
+  );
+}
+
+.shift-bar-piste.prevu {
+  height: 10px;
+  border-radius: 5px;
+  background: var(--meridien-surface-alt);
+}
+
+.shift-bar-segment {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: #b9b4a6;
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.35);
+}
+
+.shift-bar-segment:hover {
+  filter: brightness(1.08);
+}
+
+.shift-bar-segment.en_prod { background: var(--meridien-success-text); }
+.shift-bar-segment.en_pause { background: var(--meridien-accent); }
+.shift-bar-segment.deconnecte { background: #d9d4c7; }
+.shift-bar-segment.horaire { background: #efe0ae; box-shadow: none; }
+.shift-bar-segment.pause-prevue { background: var(--meridien-warning-text); opacity: 0.75; }
+
+.shift-bar-segment.depassement {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--meridien-danger-text) 0 5px,
+    #d9745a 5px 10px
+  );
+}
+
+.shift-bar-axe {
+  position: relative;
+  height: 14px;
+  font-size: 10.5px;
+  color: var(--meridien-text-dark-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.shift-bar-graduation {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.shift-bar-graduation.premiere { transform: none; }
+.shift-bar-graduation.derniere { transform: translateX(-100%); }
+
+@media (max-width: 560px) {
+  .shift-bar-graduation.secondaire:not(.derniere) { display: none; }
+}
+
+.shift-bar-legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--meridien-text-dark-muted);
+}
+
+.shift-bar-pastille {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+.shift-bar-pastille.en_prod { background: var(--meridien-success-text); }
+.shift-bar-pastille.en_pause { background: var(--meridien-accent); }
+.shift-bar-pastille.deconnecte { background: #d9d4c7; }
+.shift-bar-pastille.depassement { background: var(--meridien-danger-text); }
+.shift-bar-pastille.pause-prevue { background: var(--meridien-warning-text); opacity: 0.75; }

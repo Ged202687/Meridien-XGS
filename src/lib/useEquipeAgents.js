@@ -38,6 +38,17 @@ export async function listerAgentsDesEquipes(equipeIds) {
   return data
 }
 
+export async function listerCoachsSupervises(superviseurId) {
+  const { data, error } = await supabase
+    .from('profils_planning')
+    .select('id, nom_complet, role, matricule, actif, equipe_id')
+    .eq('superviseur_id', superviseurId)
+    .eq('role', 'coach')
+    .order('nom_complet')
+  if (error) throw error
+  return data
+}
+
 export async function listerPlanningsDuJourPourAgents(agentIds, date) {
   if (agentIds.length === 0) return []
   const iso = formatDateISO(date)
