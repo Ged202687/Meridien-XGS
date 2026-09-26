@@ -87,7 +87,7 @@ export default function Login({ onConnecte }) {
             />
           </div>
 
-          {erreur && <p className="login-error">{erreur}</p>}
+          {erreur && <p className="login-error" role="alert">{erreur}</p>}
 
           <button className="login-submit" type="submit" disabled={enCours}>
             {enCours ? 'Connexion…' : 'Se connecter'}

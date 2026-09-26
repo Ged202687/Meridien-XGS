@@ -76,6 +76,6 @@
 .edit-planning-enregistrer {
   background: var(--meridien-accent);
   border-color: var(--meridien-accent);
-  color: #1a1a2e;
+  color: var(--meridien-bg-start);
   font-weight: 600;
 }

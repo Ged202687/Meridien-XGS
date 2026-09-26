@@ -2,51 +2,94 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   padding: 14px 28px;
-  background: var(--meridien-bg-start);
+  background: linear-gradient(135deg, var(--meridien-bg-deep) 0%, var(--meridien-bg-start) 55%, var(--meridien-bg-end) 100%);
   color: #fff;
+  position: relative;
+  z-index: 10;
 }
 
 .meridien-header-brand {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
+}
+
+.meridien-header-nom {
+  display: block;
   font-family: var(--meridien-font-display);
   font-weight: 600;
-  letter-spacing: 0.02em;
-  font-size: 15px;
+  font-size: 17px;
+  line-height: 1.15;
+}
+
+.meridien-header-sous-titre {
+  display: block;
+  font-size: 11px;
+  color: var(--meridien-text-muted);
+  opacity: 0.8;
 }
 
 .meridien-header-user {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   font-size: 13.5px;
 }
 
+.meridien-header-qui {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .meridien-header-name {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .meridien-header-role {
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(242, 194, 48, 0.15);
+  background: var(--meridien-accent-voile);
   color: var(--meridien-accent);
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .meridien-header-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: #fff;
-  border-radius: 8px;
-  padding: 6px 12px;
+  border-radius: var(--meridien-radius-sm);
+  padding: 8px 12px;
   font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
 }
 
 .meridien-header-logout:hover {
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: var(--meridien-accent);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 720px) {
+  .meridien-header {
+    padding: 12px 16px;
+  }
+
+  .meridien-header-name,
+  .meridien-header-sous-titre,
+  .meridien-header-logout-texte {
+    display: none;
+  }
+
+  .meridien-header-user {
+    gap: 10px;
+  }
 }

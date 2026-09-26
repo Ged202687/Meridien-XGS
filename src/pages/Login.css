@@ -20,18 +20,18 @@
 }
 
 .login-header .org {
-  margin-top: 12px;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  color: var(--meridien-text);
+  margin-top: 14px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--meridien-accent);
   font-weight: 600;
 }
 
 .login-header h1 {
-  margin: 18px 0 4px;
+  margin: 14px 0 6px;
   font-family: var(--meridien-font-display);
-  font-size: 22px;
-  letter-spacing: 0.02em;
+  font-size: 30px;
+  letter-spacing: 0.01em;
   font-weight: 600;
   color: var(--meridien-text);
 }
@@ -92,7 +92,7 @@
   border: none;
   border-radius: 10px;
   background: var(--meridien-accent);
-  color: #1a1a2e;
+  color: var(--meridien-bg-start);
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;

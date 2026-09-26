@@ -53,7 +53,7 @@
 
 .demande-swap-liste button.choisi {
   border-color: var(--meridien-accent);
-  background: rgba(242, 194, 48, 0.12);
+  background: rgba(253, 207, 79, 0.12);
   font-weight: 600;
 }
 
@@ -82,7 +82,7 @@
   padding: 10px 18px;
   font-weight: 600;
   font-size: 13.5px;
-  color: #1a1a2e;
+  color: var(--meridien-bg-start);
   cursor: pointer;
 }
 

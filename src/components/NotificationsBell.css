@@ -4,42 +4,73 @@
 
 .notifications-bell-bouton {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
   background: transparent;
-  border: none;
-  font-size: 16px;
+  border: 1px solid transparent;
+  border-radius: var(--meridien-radius-sm);
   cursor: pointer;
   color: #fff;
 }
 
+.notifications-bell-bouton:hover,
+.notifications-bell-bouton[aria-expanded='true'] {
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .notifications-bell-badge {
   position: absolute;
-  top: -4px;
-  right: -8px;
-  background: var(--meridien-danger);
-  color: #1a1a2e;
-  font-size: 10px;
+  top: 2px;
+  right: 1px;
+  min-width: 17px;
+  background: var(--meridien-accent);
+  color: var(--meridien-bg-start);
+  font-size: 10.5px;
   font-weight: 700;
+  line-height: 1.5;
   border-radius: 999px;
-  padding: 1px 5px;
+  padding: 0 5px;
 }
 
 .notifications-bell-liste {
   position: absolute;
   right: 0;
-  top: 30px;
-  width: 280px;
-  max-height: 320px;
+  top: 44px;
+  width: 300px;
+  max-width: calc(100vw - 32px);
+  max-height: 340px;
   overflow-y: auto;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 12px;
+  box-shadow: 0 20px 44px -16px rgba(0, 5, 46, 0.35);
   z-index: 60;
+  animation: notifications-apparition 0.15s ease-out;
+}
+
+@keyframes notifications-apparition {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
 }
 
 .notifications-bell-item {
-  padding: 10px 14px;
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 11px 14px;
   border-bottom: 1px solid var(--meridien-border-light);
   cursor: pointer;
+}
+
+.notifications-bell-item:hover {
+  background: var(--meridien-app-bg);
 }
 
 .notifications-bell-item:last-child {
@@ -47,23 +78,25 @@
 }
 
 .notifications-bell-item.non-lue {
-  background: rgba(242, 194, 48, 0.08);
+  background: var(--meridien-accent-voile);
+  box-shadow: inset 3px 0 0 var(--meridien-accent);
 }
 
 .notifications-bell-item p {
-  margin: 0 0 2px;
-  font-size: 12.5px;
+  margin: 0 0 3px;
+  font-size: 13px;
+  line-height: 1.4;
   color: var(--meridien-text-dark);
 }
 
 .notifications-bell-item span {
-  font-size: 11px;
+  font-size: 11.5px;
   color: var(--meridien-text-dark-muted);
 }
 
 .notifications-bell-vide {
-  padding: 14px;
-  font-size: 12.5px;
+  padding: 16px;
+  font-size: 13px;
   color: var(--meridien-text-dark-muted);
   margin: 0;
 }

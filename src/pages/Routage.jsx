@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
 import { useProfil } from '../lib/useProfil'
 import Header from '../components/Header'
+import MeridienMark from '../components/MeridienMark'
 import AgentSpace from './AgentSpace'
 import CoachSpace from './CoachSpace'
 import SuperviseurSpace from './SuperviseurSpace'
@@ -11,23 +12,22 @@ export default function Routage({ session }) {
   const { profil, chargement, erreur } = useProfil(session)
 
   if (chargement) {
-    return <div className="meridien-page">Chargement de votre espace…</div>
+    return (
+      <div className="meridien-ecran attente" role="status">
+        <MeridienMark size={56} />
+        <p>Chargement de votre espace…</p>
+      </div>
+    )
   }
 
   if (erreur || !profil) {
     return (
-      <div className="meridien-page">
-        Impossible de charger votre profil. Contactez votre administrateur.
-      </div>
+      <EcranMessage>Impossible de charger votre profil. Contactez votre administrateur.</EcranMessage>
     )
   }
 
   if (!profil.actif) {
-    return (
-      <div className="meridien-page">
-        Votre compte est désactivé. Contactez votre administrateur.
-      </div>
-    )
+    return <EcranMessage>Votre compte est désactivé. Contactez votre administrateur.</EcranMessage>
   }
 
   return (
@@ -37,6 +37,20 @@ export default function Routage({ session }) {
       {profil.role === 'coach' && <CoachSpace profil={profil} />}
       {profil.role === 'superviseur' && <SuperviseurSpace profil={profil} />}
       {profil.role === 'super_admin' && <SuperAdminSpace profil={profil} />}
+    </div>
+  )
+}
+
+// Ouverture de l'espace impossible : message sur fond bleu nuit, avec la
+// deconnexion pour changer de compte.
+function EcranMessage({ children }) {
+  return (
+    <div className="meridien-ecran" role="alert">
+      <MeridienMark size={56} />
+      <p>{children}</p>
+      <button type="button" className="meridien-header-logout" onClick={() => supabase.auth.signOut()}>
+        Se déconnecter
+      </button>
     </div>
   )
 }

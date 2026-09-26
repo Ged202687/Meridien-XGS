@@ -77,25 +77,27 @@ export default function GestionAgents() {
         <div className="gestion-agents-table">
           <div className="gestion-agents-ligne gestion-agents-entete">
             <span>Nom</span>
-            <span>Matricule</span>
+            <span className="col-secondaire">Matricule</span>
             <span>Rôle</span>
-            <span>Équipe</span>
+            <span className="col-secondaire">Équipe</span>
             <span>Statut</span>
             <span></span>
           </div>
           {agentsFiltres.map((a) => (
             <div className="gestion-agents-ligne" key={a.id}>
               <span>{a.nom_complet}</span>
-              <span className="muted">{a.matricule || '—'}</span>
+              <span className="muted col-secondaire">{a.matricule || '—'}</span>
               <span>{LIBELLE_ROLE[a.role] ?? a.role}</span>
-              <span className="muted">{a.equipe?.nom || '—'}</span>
+              <span className="muted col-secondaire">{a.equipe?.nom || '—'}</span>
               <span>
                 <span className={`badge ${a.actif ? 'badge-actif' : 'badge-inactif'}`}>
                   {a.actif ? 'Actif' : 'Inactif'}
                 </span>
               </span>
-              <span className="gestion-agents-modifier" onClick={() => setModal(a)}>
-                Modifier
+              <span className="gestion-agents-actions">
+                <button type="button" className="gestion-agents-modifier" onClick={() => setModal(a)}>
+                  Modifier
+                </button>
               </span>
             </div>
           ))}

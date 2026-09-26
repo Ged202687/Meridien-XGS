@@ -10,8 +10,8 @@ export default function AgentPlanningTable({ agents, plannings, date, agentDepli
     <div className="agent-planning-table">
       <div className={`${classeGrille} agent-planning-entete`}>
         <span>Nom</span>
-        <span>Rôle</span>
-        {colonneEquipe && <span>Équipe</span>}
+        <span className="col-secondaire">Rôle</span>
+        {colonneEquipe && <span className="col-secondaire">Équipe</span>}
         <span>Statut du jour</span>
         {editable && <span></span>}
       </div>
@@ -20,10 +20,21 @@ export default function AgentPlanningTable({ agents, plannings, date, agentDepli
         const deplie = agentDeplie === a.id
         return (
           <div key={a.id}>
-            <div className={classeGrille} onClick={() => setAgentDeplie(deplie ? null : a.id)}>
-              <span>{a.nom_complet}</span>
-              <span className="muted">{a.role}</span>
-              {colonneEquipe && <span className="muted">{a.equipe?.nom || '—'}</span>}
+            <div
+              className={`${classeGrille}${deplie ? ' deplie' : ''}`}
+              role="button"
+              tabIndex={0}
+              aria-expanded={deplie}
+              onClick={() => setAgentDeplie(deplie ? null : a.id)}
+              onKeyDown={(e) => {
+                if (e.target !== e.currentTarget || (e.key !== 'Enter' && e.key !== ' ')) return
+                e.preventDefault()
+                setAgentDeplie(deplie ? null : a.id)
+              }}
+            >
+              <span className="agent-planning-nom">{a.nom_complet}</span>
+              <span className="muted col-secondaire">{a.role}</span>
+              {colonneEquipe && <span className="muted col-secondaire">{a.equipe?.nom || '—'}</span>}
               <span>
                 {!p && <span className="agent-planning-badge neutre">Non planifié</span>}
                 {(p?.statut === 'travail' || p?.statut === 'formation') && (
@@ -43,14 +54,17 @@ export default function AgentPlanningTable({ agents, plannings, date, agentDepli
                 )}
               </span>
               {editable && (
-                <span
-                  className="agent-planning-modifier"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    onEdit(a, p)
-                  }}
-                >
-                  Modifier
+                <span className="agent-planning-actions">
+                  <button
+                    type="button"
+                    className="agent-planning-modifier"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onEdit(a, p)
+                    }}
+                  >
+                    Modifier
+                  </button>
                 </span>
               )}
             </div>

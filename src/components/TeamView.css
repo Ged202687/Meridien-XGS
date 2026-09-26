@@ -1,19 +1,43 @@
 .team-view-nav {
   display: flex;
   align-items: center;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
   font-size: 13px;
   color: var(--meridien-text-dark-muted);
   margin-bottom: 10px;
 }
 
 .team-view-nav button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
   border: 1px solid var(--meridien-border-light);
   background: var(--meridien-surface);
-  border-radius: 8px;
+  border-radius: var(--meridien-radius-sm);
   padding: 6px 12px;
   font-size: 12.5px;
+  font-weight: 500;
+  color: var(--meridien-text-dark);
   cursor: pointer;
+}
+
+.team-view-nav button:hover {
+  border-color: #C9CDE0;
+  background: var(--meridien-app-bg);
+}
+
+.team-view-date {
+  font-family: var(--meridien-font-display);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--meridien-text-dark);
+  padding: 0 4px;
+}
+
+.team-view-date::first-letter {
+  text-transform: uppercase;
 }
 
 .team-view-equipes {

@@ -26,7 +26,7 @@
   background: repeating-linear-gradient(
     135deg,
     var(--meridien-surface-alt) 0 6px,
-    #f8f6f0 6px 12px
+    #F8F9FC 6px 12px
   );
 }
 
@@ -40,7 +40,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  background: #b9b4a6;
+  background: #A9AEC6;
   box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.35);
 }
 
@@ -50,17 +50,17 @@
 
 .shift-bar-segment.en_prod { background: var(--meridien-success-text); }
 .shift-bar-segment.en_pause { background: var(--meridien-accent); }
-.shift-bar-segment.deconnecte { background: #d9d4c7; }
-.shift-bar-segment.horaire { background: #efe0ae; box-shadow: none; }
+.shift-bar-segment.deconnecte { background: #D5D9E6; }
+.shift-bar-segment.horaire { background: #FFF1C7; box-shadow: none; }
 .shift-bar-segment.pause-prevue { background: var(--meridien-warning-text); opacity: 0.75; }
-.shift-bar-segment.dejeuner { background: #5b6690; }
+.shift-bar-segment.dejeuner { background: #525D7D; }
 .shift-bar-segment.pause-prevue.dejeuner { opacity: 0.55; }
 
 .shift-bar-segment.depassement {
   background: repeating-linear-gradient(
     135deg,
     var(--meridien-danger-text) 0 5px,
-    #d9745a 5px 10px
+    #C45C49 5px 10px
   );
 }
 
@@ -106,7 +106,7 @@
 
 .shift-bar-pastille.en_prod { background: var(--meridien-success-text); }
 .shift-bar-pastille.en_pause { background: var(--meridien-accent); }
-.shift-bar-pastille.dejeuner { background: #5b6690; }
-.shift-bar-pastille.deconnecte { background: #d9d4c7; }
+.shift-bar-pastille.dejeuner { background: #525D7D; }
+.shift-bar-pastille.deconnecte { background: #D5D9E6; }
 .shift-bar-pastille.depassement { background: var(--meridien-danger-text); }
 .shift-bar-pastille.pause-prevue { background: var(--meridien-warning-text); opacity: 0.75; }

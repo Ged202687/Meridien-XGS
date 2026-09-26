@@ -19,7 +19,7 @@
   height: 260px;
   border-radius: 10px;
   overflow: hidden;
-  background: #efe0ae;
+  background: #FFF1C7;
   flex-shrink: 0;
 }
 
@@ -97,8 +97,14 @@
   border-radius: 8px;
   padding: 7px 14px;
   font-size: 12.5px;
-  color: var(--meridien-accent-hover);
+  font-weight: 500;
+  color: var(--meridien-accent-ink);
   cursor: pointer;
+}
+
+.day-timeline-modifier:hover {
+  border-color: var(--meridien-accent);
+  background: var(--meridien-accent-voile);
 }
 
 .day-timeline-info,

@@ -5,8 +5,10 @@
   margin-bottom: 18px;
   background: var(--meridien-surface);
   border: 1px solid var(--meridien-border-light);
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: var(--meridien-shadow);
   padding: 12px 16px;
+  flex-wrap: wrap;
 }
 
 .global-planning-selecteur label {
@@ -17,8 +19,9 @@
 
 .global-planning-selecteur select {
   flex: 1;
+  min-width: 220px;
   border: 1px solid var(--meridien-border-light);
-  border-radius: 8px;
+  border-radius: var(--meridien-radius-sm);
   padding: 8px 12px;
   font-size: 13.5px;
 }
@@ -26,30 +29,56 @@
 .global-planning-nav {
   display: flex;
   align-items: center;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
   font-size: 13px;
   color: var(--meridien-text-dark-muted);
   margin-bottom: 12px;
 }
 
 .global-planning-nav button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
   border: 1px solid var(--meridien-border-light);
   background: var(--meridien-surface);
-  border-radius: 8px;
+  border-radius: var(--meridien-radius-sm);
   padding: 6px 12px;
   font-size: 12.5px;
+  font-weight: 500;
+  color: var(--meridien-text-dark);
   cursor: pointer;
+}
+
+.global-planning-nav button:hover {
+  border-color: #C9CDE0;
+  background: var(--meridien-app-bg);
+}
+
+.global-planning-date {
+  font-family: var(--meridien-font-display);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--meridien-text-dark);
+  padding: 0 4px;
+}
+
+.global-planning-date::first-letter {
+  text-transform: uppercase;
 }
 
 .global-planning-filtres {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 14px;
 }
 
 .global-planning-filtres select {
+  background: var(--meridien-surface);
   border: 1px solid var(--meridien-border-light);
-  border-radius: 8px;
+  border-radius: var(--meridien-radius-sm);
   padding: 8px 12px;
   font-size: 13px;
 }

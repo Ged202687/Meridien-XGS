@@ -1,5 +1,6 @@
 .stats-resume {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 16px;
 }
@@ -7,8 +8,9 @@
 .stats-resume-item {
   background: var(--meridien-surface);
   border: 1px solid var(--meridien-border-light);
-  border-radius: 10px;
-  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: var(--meridien-shadow);
+  padding: 14px 20px;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -17,8 +19,9 @@
 
 .stats-resume-valeur {
   font-family: var(--meridien-font-display);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 600;
+  font-variant-numeric: tabular-nums;
   color: var(--meridien-text-dark);
 }
 

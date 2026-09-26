@@ -3,6 +3,7 @@ import { listerAgents, listerEquipes } from '../lib/useAgents'
 import { listerPlanningsDuJourPourAgents } from '../lib/useEquipeAgents'
 import { ajouterJours, formatDateLongue } from '../lib/dateUtils'
 import AgentPlanningTable from './AgentPlanningTable'
+import { IconePrecedent, IconeSuivant } from './Icones'
 import EditPlanningModal from './EditPlanningModal'
 import StatsResume from './StatsResume'
 import PlanningTabs from './PlanningTabs'
@@ -62,8 +63,8 @@ export default function GlobalPlanning() {
   return (
     <div>
       <div className="global-planning-selecteur">
-        <label>Voir le calendrier d'un agent en particulier</label>
-        <select value={agentSelectionneId} onChange={(e) => setAgentSelectionneId(e.target.value)}>
+        <label htmlFor="agent-calendrier">Voir le calendrier d'un agent en particulier</label>
+        <select id="agent-calendrier" value={agentSelectionneId} onChange={(e) => setAgentSelectionneId(e.target.value)}>
           <option value="">— Vue d'ensemble (tous les agents) —</option>
           {agents.map((a) => (
             <option key={a.id} value={a.id}>
@@ -78,14 +79,14 @@ export default function GlobalPlanning() {
       ) : (
         <>
           <div className="global-planning-nav">
-            <button onClick={() => setDate((d) => ajouterJours(d, -1))}>←</button>
-            <span>{formatDateLongue(date)}</span>
-            <button onClick={() => setDate(new Date())}>Aujourd'hui</button>
-            <button onClick={() => setDate((d) => ajouterJours(d, 1))}>→</button>
+            <button type="button" aria-label="Jour précédent" onClick={() => setDate((d) => ajouterJours(d, -1))}><IconePrecedent /></button>
+            <span className="global-planning-date">{formatDateLongue(date)}</span>
+            <button type="button" onClick={() => setDate(new Date())}>Aujourd'hui</button>
+            <button type="button" aria-label="Jour suivant" onClick={() => setDate((d) => ajouterJours(d, 1))}><IconeSuivant /></button>
           </div>
 
           <div className="global-planning-filtres">
-            <select value={filtreEquipe} onChange={(e) => setFiltreEquipe(e.target.value)}>
+            <select aria-label="Équipe" value={filtreEquipe} onChange={(e) => setFiltreEquipe(e.target.value)}>
               <option value="">Toutes les équipes</option>
               {equipes.map((eq) => (
                 <option key={eq.id} value={eq.id}>
@@ -93,7 +94,7 @@ export default function GlobalPlanning() {
                 </option>
               ))}
             </select>
-            <select value={filtreStatut} onChange={(e) => setFiltreStatut(e.target.value)}>
+            <select aria-label="Statut" value={filtreStatut} onChange={(e) => setFiltreStatut(e.target.value)}>
               <option value="">Tous les statuts</option>
               <option value="travail">Travail</option>
               <option value="repos">Repos</option>

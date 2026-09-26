@@ -16,7 +16,8 @@ export default function WeekView({ agentId, lundi, onChoisirJour }) {
         const estRepos = planning && planning.statut !== 'travail' && planning.statut !== 'formation'
         const nonPlanifie = !planning
         return (
-          <div
+          <button
+            type="button"
             key={i}
             className="week-view-ligne"
             onClick={() => onChoisirJour?.(date)}
@@ -38,7 +39,7 @@ export default function WeekView({ agentId, lundi, onChoisirJour }) {
                 {LIBELLE_STATUT[planning.statut]}
               </span>
             )}
-          </div>
+          </button>
         )
       })}
     </div>

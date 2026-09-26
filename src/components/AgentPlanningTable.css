@@ -1,7 +1,8 @@
 .agent-planning-table {
   background: var(--meridien-surface);
   border: 1px solid var(--meridien-border-light);
-  border-radius: 12px;
+  border-radius: var(--meridien-radius);
+  box-shadow: var(--meridien-shadow);
   overflow: hidden;
 }
 
@@ -12,6 +13,20 @@
   font-size: 13.5px;
   border-bottom: 1px solid var(--meridien-border-light);
   cursor: pointer;
+  transition: background-color 0.12s ease-out;
+}
+
+.agent-planning-ligne:focus-visible {
+  outline-offset: -2px;
+}
+
+.agent-planning-ligne.deplie {
+  background: var(--meridien-app-bg);
+  box-shadow: inset 3px 0 0 var(--meridien-accent);
+}
+
+.agent-planning-nom {
+  font-weight: 500;
 }
 
 .agent-planning-ligne.cols-3 { grid-template-columns: 2fr 1fr 1.4fr; }
@@ -23,10 +38,17 @@
 }
 
 .agent-planning-entete {
-  font-size: 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--meridien-text-dark-muted);
-  background: var(--meridien-surface-alt);
+  background: var(--meridien-app-bg);
   cursor: default;
+}
+
+.agent-planning-entete:hover {
+  background: var(--meridien-app-bg);
 }
 
 .agent-planning-ligne .muted {
@@ -34,7 +56,7 @@
 }
 
 .agent-planning-badge {
-  font-size: 11px;
+  font-size: 11.5px;
   padding: 3px 9px;
   border-radius: 999px;
   font-weight: 600;
@@ -55,10 +77,24 @@
   color: var(--meridien-warning-text);
 }
 
-.agent-planning-modifier {
-  color: var(--meridien-accent-hover);
-  font-weight: 500;
+.agent-planning-actions {
   text-align: right;
+}
+
+.agent-planning-modifier {
+  background: transparent;
+  border: 1px solid var(--meridien-border-light);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--meridien-accent-ink);
+  cursor: pointer;
+}
+
+.agent-planning-modifier:hover {
+  border-color: var(--meridien-accent);
+  background: var(--meridien-accent-voile);
 }
 
 .agent-planning-detail {
@@ -72,4 +108,23 @@
   color: var(--meridien-text-dark-muted);
   padding: 16px;
   text-align: center;
+}
+
+/* Petit ecran : on garde le nom, le statut et l'action ; role et equipe se
+   retrouvent dans le detail deplie. */
+@media (max-width: 640px) {
+  .agent-planning-ligne .col-secondaire {
+    display: none;
+  }
+
+  .agent-planning-ligne.cols-3,
+  .agent-planning-ligne.cols-4,
+  .agent-planning-ligne.cols-5 {
+    grid-template-columns: 1.3fr 1fr auto;
+  }
+
+  .agent-planning-ligne {
+    gap: 10px;
+    padding: 12px;
+  }
 }

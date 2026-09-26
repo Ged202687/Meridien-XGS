@@ -1,33 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
+/* Identite XGS, commune au portail et aux outils : bleu nuit du logo, soleil
+   jaune, Poppins pour les titres. Le planning se lit sur fond clair ; le bleu
+   nuit habille l'en-tete et la connexion. */
 :root {
-  --meridien-bg-start: #0b1230;
-  --meridien-bg-end: #171e45;
+  --meridien-bg-start: #000B53;
+  --meridien-bg-end: #0B1766;
+  --meridien-bg-deep: #00052E;
   --meridien-card-bg: rgba(255, 255, 255, 0.06);
-  --meridien-card-border: rgba(255, 255, 255, 0.09);
-  --meridien-input-bg: #edeffb;
-  --meridien-input-text: #1a1a2e;
-  --meridien-accent: #efb93d;
-  --meridien-accent-hover: #d9a32a;
+  --meridien-card-border: rgba(255, 255, 255, 0.10);
+  --meridien-input-bg: #F2F4F8;
+  --meridien-input-text: #10133A;
+  --meridien-accent: #FDCF4F;
+  --meridien-accent-hover: #FFD968;
+  /* Jaune fonce, lisible en texte sur fond blanc (le jaune pur ne l'est pas). */
+  --meridien-accent-ink: #7A5800;
+  --meridien-accent-voile: rgba(253, 207, 79, 0.14);
   --meridien-text: #ffffff;
-  --meridien-text-muted: #b9bedd;
-  --meridien-danger: #ff8a80;
+  --meridien-text-muted: #C7CBEB;
+  --meridien-danger: #FF8A80;
   --meridien-radius: 14px;
+  --meridien-radius-sm: 10px;
   --meridien-font: "Inter", "Segoe UI", system-ui, sans-serif;
-  --meridien-font-display: "Sora", "Inter", system-ui, sans-serif;
+  --meridien-font-display: "Poppins", "Inter", system-ui, sans-serif;
 
-  --meridien-app-bg: #f6f4ef;
+  --meridien-app-bg: #F4F5FA;
   --meridien-surface: #ffffff;
-  --meridien-surface-alt: #f0ece0;
-  --meridien-border-light: #e7e2d8;
-  --meridien-text-dark: #0b1230;
-  --meridien-text-dark-muted: #8a8676;
-  --meridien-success-bg: #e1f0ea;
-  --meridien-success-text: #0f6e56;
-  --meridien-warning-bg: #fbf0d9;
-  --meridien-warning-text: #a8790a;
-  --meridien-danger-bg: #f7e3db;
-  --meridien-danger-text: #c1502e;
+  --meridien-surface-alt: #ECEEF5;
+  --meridien-border-light: #E4E6F0;
+  --meridien-text-dark: #10133A;
+  --meridien-text-dark-muted: #5F6282;
+  --meridien-success-bg: #E2F2E9;
+  --meridien-success-text: #2F7A57;
+  --meridien-warning-bg: #FCEFD4;
+  --meridien-warning-text: #8A5A08;
+  --meridien-danger-bg: #FBE8E4;
+  --meridien-danger-text: #A8412F;
+  --meridien-shadow: 0 1px 2px rgba(0, 11, 83, 0.04), 0 8px 24px rgba(0, 11, 83, 0.06);
 }
 
 * {
@@ -38,4 +47,47 @@ body {
   margin: 0;
   font-family: var(--meridien-font);
   color: var(--meridien-text-dark);
+  background: var(--meridien-app-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  transition: background-color 0.15s ease-out, border-color 0.15s ease-out, color 0.15s ease-out,
+    transform 0.15s ease-out;
+}
+
+button:not(:disabled):active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* Focus clavier : anneau bleu nuit sur fond clair, jaune sur fond bleu nuit. */
+:where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--meridien-bg-start);
+  outline-offset: 2px;
+}
+
+:where(.meridien-header, .login-screen, .meridien-ecran) :where(button, a, input):focus-visible {
+  outline-color: var(--meridien-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

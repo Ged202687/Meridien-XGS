@@ -7,6 +7,7 @@ import {
 } from '../lib/useEquipeAgents'
 import { ajouterJours, formatDateLongue } from '../lib/dateUtils'
 import AgentPlanningTable from './AgentPlanningTable'
+import { IconePrecedent, IconeSuivant } from './Icones'
 import StatsResume from './StatsResume'
 import './TeamView.css'
 
@@ -75,10 +76,10 @@ export default function TeamView({ profil }) {
   return (
     <div>
       <div className="team-view-nav">
-        <button onClick={() => setDate((d) => ajouterJours(d, -1))}>←</button>
-        <span>{formatDateLongue(date)}</span>
-        <button onClick={() => setDate(new Date())}>Aujourd'hui</button>
-        <button onClick={() => setDate((d) => ajouterJours(d, 1))}>→</button>
+        <button type="button" aria-label="Jour précédent" onClick={() => setDate((d) => ajouterJours(d, -1))}><IconePrecedent /></button>
+        <span className="team-view-date">{formatDateLongue(date)}</span>
+        <button type="button" onClick={() => setDate(new Date())}>Aujourd'hui</button>
+        <button type="button" aria-label="Jour suivant" onClick={() => setDate((d) => ajouterJours(d, 1))}><IconeSuivant /></button>
       </div>
 
       <p className="team-view-equipes">

@@ -11,6 +11,7 @@ import {
   formatDateCourte,
   formatMoisAnnee,
 } from '../lib/dateUtils'
+import { IconePrecedent, IconeSuivant } from './Icones'
 import './PlanningTabs.css'
 
 const ONGLETS = [
@@ -47,8 +48,10 @@ export default function PlanningTabs({ agentId, nomAgent, editable }) {
         <div className="planning-tabs-switch">
           {ONGLETS.map((onglet) => (
             <button
+              type="button"
               key={onglet.id}
               className={onglet.id === actif ? 'active' : ''}
+              aria-pressed={onglet.id === actif}
               onClick={() => setActif(onglet.id)}
             >
               {onglet.label}
@@ -60,23 +63,23 @@ export default function PlanningTabs({ agentId, nomAgent, editable }) {
       <div className="planning-tabs-nav-jour">
         {actif === 'jour' && (
           <>
-            <button onClick={() => setDate((d) => ajouterJours(d, -1))}>←</button>
-            <button onClick={() => setDate(new Date())}>Aujourd'hui</button>
-            <button onClick={() => setDate((d) => ajouterJours(d, 1))}>→</button>
+            <button type="button" aria-label="Jour précédent" onClick={() => setDate((d) => ajouterJours(d, -1))}><IconePrecedent /></button>
+            <button type="button" onClick={() => setDate(new Date())}>Aujourd'hui</button>
+            <button type="button" aria-label="Jour suivant" onClick={() => setDate((d) => ajouterJours(d, 1))}><IconeSuivant /></button>
           </>
         )}
         {actif === 'semaine' && (
           <>
-            <button onClick={() => setDate((d) => ajouterSemaines(d, -1))}>←</button>
-            <button onClick={() => setDate(new Date())}>Cette semaine</button>
-            <button onClick={() => setDate((d) => ajouterSemaines(d, 1))}>→</button>
+            <button type="button" aria-label="Semaine précédente" onClick={() => setDate((d) => ajouterSemaines(d, -1))}><IconePrecedent /></button>
+            <button type="button" onClick={() => setDate(new Date())}>Cette semaine</button>
+            <button type="button" aria-label="Semaine suivante" onClick={() => setDate((d) => ajouterSemaines(d, 1))}><IconeSuivant /></button>
           </>
         )}
         {actif === 'mois' && (
           <>
-            <button onClick={() => setDate((d) => ajouterMois(d, -1))}>←</button>
-            <button onClick={() => setDate(new Date())}>Ce mois-ci</button>
-            <button onClick={() => setDate((d) => ajouterMois(d, 1))}>→</button>
+            <button type="button" aria-label="Mois précédent" onClick={() => setDate((d) => ajouterMois(d, -1))}><IconePrecedent /></button>
+            <button type="button" onClick={() => setDate(new Date())}>Ce mois-ci</button>
+            <button type="button" aria-label="Mois suivant" onClick={() => setDate((d) => ajouterMois(d, 1))}><IconeSuivant /></button>
           </>
         )}
       </div>

@@ -5,6 +5,7 @@ const JOURS_ENTETE = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
 
 export default function MonthView({ agentId, mois, onChoisirJour }) {
   const { semaines, chargement, erreur } = usePlanningMois(agentId, mois)
+  const aujourdhui = new Date().toDateString()
 
   if (chargement) return <p className="month-view-info">Chargement…</p>
   if (erreur) return <p className="month-view-erreur">Impossible de charger le mois.</p>
@@ -20,8 +21,11 @@ export default function MonthView({ agentId, mois, onChoisirJour }) {
         {semaines.flat().map(({ date, planning, horsMois }, i) => {
           const estRepos = planning && planning.statut !== 'travail' && planning.statut !== 'formation'
           return (
-            <div
+            <button
+              type="button"
               key={i}
+              aria-label={date.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
+              aria-current={date.toDateString() === aujourdhui ? 'date' : undefined}
               className={`month-view-case ${horsMois ? 'hors-mois' : ''} ${
                 estRepos ? (planning.statut === 'repos_fixe' ? 'fixe' : 'rotatif') : ''
               }`}
@@ -35,7 +39,7 @@ export default function MonthView({ agentId, mois, onChoisirJour }) {
                 {planning?.statut === 'formation' && 'Formation'}
                 {estRepos && 'Repos'}
               </span>
-            </div>
+            </button>
           )
         })}
       </div>
